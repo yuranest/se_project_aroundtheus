@@ -1,0 +1,9 @@
+.header {
+  margin-top: 45px;
+  margin-bottom: 45px;
+  border-bottom: 1px solid #545454;
+}
+
+.header__title__logo {
+  margin-bottom: 41px;
+}
