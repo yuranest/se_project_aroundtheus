@@ -1,0 +1,52 @@
+.card {
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card__image {
+  width: 100%;
+  height: 282px;
+}
+
+.card__description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 25px 20px 21px 20px; /* padding change from: padding: 25px 15px 21px 31px; */
+  color: black;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 24px;
+  max-width: 220px;
+  font-weight: 900;
+  line-height: 29px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__like-button {
+  background: transparent url("../images/like_disabled.svg") center no-repeat;
+  width: 21px;
+  height: 18px;
+  border: none;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.3s ease; /* changed: Transition for opacity */
+}
+
+.card__like-button:hover {
+  opacity: 0.7; /* changed: Adjusted this value to control the hover opacity */
+}

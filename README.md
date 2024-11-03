@@ -24,5 +24,5 @@ This project, _Around The U.S._, is a responsive web layout created with HTML an
 
 1. Clone the repository:
    ```bash
-   git clone git@github.com:yuranest/Sprint-3.git
+   git clone git@github.com:yuranest/se_project_aroundtheus.git
    ```

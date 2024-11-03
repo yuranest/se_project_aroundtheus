@@ -1,9 +1,9 @@
 .header {
   margin-top: 45px;
-  margin-bottom: 45px;
-  border-bottom: 1px solid #545454;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7); /* 70% opacity */
 }
 
-.header__title__logo {
+.header__logo {
   margin-bottom: 41px;
 }
