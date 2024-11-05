@@ -44,7 +44,7 @@
 }
 
 .profile__edit-button:hover {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .profile__description {
@@ -62,7 +62,6 @@
   height: 50px;
   cursor: pointer;
   border: 2px solid #fff;
-  border-radius: 2px;
   margin-left: auto;
   display: inline-block;
   opacity: 1;
@@ -71,7 +70,7 @@
 }
 
 .profile__add-button:hover {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 620px) {
@@ -102,11 +101,9 @@
 @media screen and (max-width: 432px) {
   .profile__title {
     font-size: 22px;
-    line-height: 27px;
   }
 
   .profile__description {
     font-size: 14px;
-    line-height: 17px;
   }
 }

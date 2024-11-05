@@ -1,5 +1,7 @@
 # Project 3: Around The U.S.
 
+Site is live at [https://yuranest.github.io/se_project_aroundtheus/](https://yuranest.github.io/se_project_aroundtheus/)
+
 ## Overview
 
 This project, _Around The U.S._, is a responsive web layout created with HTML and CSS. It is designed to adapt seamlessly across various screen sizes, including desktop, tablet, and mobile, as specified in the Figma designs.
