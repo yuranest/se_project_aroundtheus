@@ -22,4 +22,12 @@
     margin: 0 20px;
     max-width: calc(100% - 40px);
   }
+
+  @media screen and (max-width: 320px) {
+    .page__section {
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
