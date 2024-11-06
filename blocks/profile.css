@@ -29,6 +29,10 @@
   margin: 0;
   grid-area: title;
   color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .profile__edit-button {
@@ -54,6 +58,10 @@
   margin: 0;
   grid-area: description;
   color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .profile__add-button {
@@ -107,11 +115,13 @@
   .profile__title {
     font-size: 22px;
     line-height: 27px;
+    max-width: 90%;
   }
 
   .profile__description {
     font-size: 14px;
     line-height: 17px;
+    max-width: 90%;
   }
 
   .profile__avatar {
