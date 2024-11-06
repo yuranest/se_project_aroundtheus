@@ -1,7 +1,3 @@
-.cards {
-  /*fonts*/
-}
-
 .cards__list {
   display: grid;
   justify-content: center;
