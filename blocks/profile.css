@@ -76,6 +76,7 @@
   opacity: 1;
   transition: opacity 0.3s ease;
   padding: 0;
+  flex-shrink: 0; /* Prevents the button from shrinking */ /*https://prnt.sc/V1EhLbGyb0tZ */
 }
 
 .profile__add-button:hover {
