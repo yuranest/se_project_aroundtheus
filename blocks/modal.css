@@ -77,5 +77,10 @@
   flex-direction: column;
   justify-content: center;
 }
-
-@media screen and (max-width: 320px);
+@media (max-width: 320px) {
+  .modal__close-btn {
+    max-width: 282px;
+    top: -45px;
+    right: -5px;
+  }
+}
