@@ -73,6 +73,7 @@
   flex-direction: column;
   justify-content: center;
 }
+
 @media screen and (max-width: 320px) {
   .modal__container {
     max-width: 282px;
@@ -80,13 +81,12 @@
   }
 
   .modal__close-btn {
-    top: -40px;
+    top: -45px;
+    left: -5px;
     width: 26px;
     height: 26px;
   }
-  .modal__title {
-    font-size: 18px;
-    font-weight: 900;
-    line-height: 21px;
+  .modal__save-btn {
+    padding: 14px 0;
   }
 }
