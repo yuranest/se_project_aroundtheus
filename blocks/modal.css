@@ -82,11 +82,22 @@
 
   .modal__close-btn {
     top: -45px;
-    left: -5px;
-    width: 26px;
-    height: 26px;
+    right: 5px;
   }
+
   .modal__save-btn {
     padding: 14px 0;
+  }
+
+  .modal__title {
+    width: 238px;
+    height: 22px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .modal__input {
+    font-size: 14px;
+    line-height: 17px;
   }
 }
