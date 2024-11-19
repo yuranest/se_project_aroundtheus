@@ -5,9 +5,14 @@
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
+  z-index: 99;
+}
+
+.modal_opened {
+  display: flex;
 }
 
 .modal__container {
@@ -66,12 +71,6 @@
   font-size: 18px;
   cursor: pointer;
   text-align: center;
-}
-
-.modal_opened {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 @media screen and (max-width: 320px) {
