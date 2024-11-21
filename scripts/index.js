@@ -25,6 +25,8 @@ const initialCards = [
   },
 ];
 
+//============== Profil Edit Button / Open / Close ===================================//
+
 // Select elements
 const editButton = document.querySelector(".profile__edit-button"); // "Edit" button
 const modal = document.querySelector(".modal"); // The modal element
@@ -50,3 +52,45 @@ modal.addEventListener("click", (event) => {
     closeModal();
   }
 });
+
+//========================== Enter and Save ================================================//
+
+// Select profile elements
+const profileName = document.querySelector(".profile__title"); // Name on the profile
+const profileDescription = document.querySelector(".profile__description"); // Description on the profile
+
+// Select modal input fields
+const nameInput = document.querySelector(".modal__input[name='name']"); // "Name" input field
+const descriptionInput = document.querySelector(
+  ".modal__input[name='description']"
+); // "About me" input field
+
+// Select form element
+const profileForm = document.querySelector(".modal__form"); // The form inside the modal
+
+// Function to open the modal and populate fields
+function openModal() {
+  // Populate the modal input fields with current profile data
+  nameInput.value = profileName.textContent;
+  descriptionInput.value = profileDescription.textContent;
+
+  // Show the modal
+  modal.classList.add("modal_opened");
+}
+
+// Function to handle form submission
+function handleProfileFormSubmit(event) {
+  event.preventDefault(); // Prevent default form submission behavior
+
+  // Update profile with new data from the modal inputs
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = descriptionInput.value;
+
+  // Close the modal
+  closeModal();
+}
+
+// Add event listener for form submission
+profileForm.addEventListener("submit", handleProfileFormSubmit);
+
+//===================================================================================================//
