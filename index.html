@@ -33,6 +33,9 @@
             src="./images/jacques-cousteau.jpg"
             alt="Jacques Cousteau's avatar"
           />
+          <!-- ========================================================= -->
+          <!--                            Profile Section                -->
+          <!-- ========================================================= -->
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button type="button" class="profile__edit-button"></button>
@@ -40,81 +43,30 @@
           </div>
           <button type="button" class="profile__add-button"></button>
         </section>
+        <!-- ========================================================= -->
+        <!--                            Card Section                   -->
+        <!-- ========================================================= -->
         <section class="cards page__section">
-          <ul class="cards__list">
+          <template class="card-template">
             <li class="card">
-              <img
-                class="card__image"
-                src="./images/yosemite-valley.jpeg"
-                alt="A scenic view of Yosemite Valley."
-              />
+              <img class="card__image" src="#" alt="" />
               <div class="card__description">
-                <h2 class="card__title">Yosemite Valley</h2>
+                <h2 class="card__title"></h2>
                 <button type="button" class="card__like-button"></button>
               </div>
             </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/lake-louise.jpeg"
-                alt="A scenic view of Lake Louise."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lake Louise</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/bald-mountains.jpeg"
-                alt="A scenic view of Bald Mountains."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/latemar.jpeg"
-                alt="A scenic view of Latemar."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Latemar</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/vanoise-national-park.jpeg"
-                alt="A scenic view of Vanoise National Park."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/lago-di-braies.jpeg"
-                alt="A scenic view of Lago di Braies."
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-          </ul>
+          </template>
+          <ul class="cards__list"></ul>
         </section>
+
         <footer class="footer page__section">
           <p class="footer__text">&copy; 2024 Yuriy Nesterenko</p>
         </footer>
       </main>
     </div>
+    <!-- ========================================================= -->
+    <!--                            Modal Section                  -->
+    <!-- ========================================================= -->
     <div class="modal">
       <div class="modal__container">
         <button class="modal__close-btn" type="button"></button>

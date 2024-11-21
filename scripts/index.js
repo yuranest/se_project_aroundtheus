@@ -1,3 +1,10 @@
+//==========================================================================//
+//                          Cards Template                                  //
+//=========================================================================//
+
+const cardTemplate = document.querySelector(".card-template"); // Template//
+const cardsContainer = document.querySelector(".cards__list"); // Cards Container//
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -25,7 +32,30 @@ const initialCards = [
   },
 ];
 
-//============== Profil Edit Button / Open / Close ===================================//
+function getCardElement(data) {
+  const cardElement = cardTemplate.content.cloneNode(true); // Clone Template //
+  const cardImage = cardElement.querySelector(".card__image"); // Select Image //
+  const cardTitle = cardElement.querySelector(".card__title"); // Select Title //
+
+  cardImage.src = data.link; // Set link to Image //
+  cardImage.alt = data.name; // Set alt for Image //
+  cardTitle.textContent = data.name; // Set Title text //
+
+  return cardElement;
+}
+
+function renderCards(cardsArray) {
+  cardsArray.forEach((cardData) => {
+    const cardElement = getCardElement(cardData);
+    cardsContainer.appendChild(cardElement);
+  });
+}
+
+renderCards(initialCards);
+
+//==========================================================================//
+//                          Profil Edit Button / Open / Close               //
+//=========================================================================//
 
 // Select elements
 const editButton = document.querySelector(".profile__edit-button"); // "Edit" button
@@ -53,8 +83,9 @@ modal.addEventListener("click", (event) => {
   }
 });
 
-//========================== Enter and Save ================================================//
-
+//==========================================================================//
+//                          Enter and Save Modal                            //
+//=========================================================================//
 // Select profile elements
 const profileName = document.querySelector(".profile__title"); // Name on the profile
 const profileDescription = document.querySelector(".profile__description"); // Description on the profile
@@ -92,5 +123,3 @@ function handleProfileFormSubmit(event) {
 
 // Add event listener for form submission
 profileForm.addEventListener("submit", handleProfileFormSubmit);
-
-//===================================================================================================//
