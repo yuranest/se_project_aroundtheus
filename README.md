@@ -11,7 +11,7 @@ Video demonstration:
 
 ## Overview
 
-This project, _Around The U.S._, is a responsive web layout created with **HTML**, **CSS**, and **JavaScript**. It is designed to adapt seamlessly across various screen sizes, including desktop, tablet, and mobile, as specified in the [Figma designs](https://www.figma.com/design/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4%3A-Around-The-U.S.-%2F-desktop-%2B-mobile?node-id=6432-289&node-type=frame&t=B0ucVNldCqwjWnn1-0).
+This project, _Around The U.S._, is a responsive web layout created with **HTML**, **CSS**, and **JavaScript**. It is designed to adapt seamlessly across various screen sizes, including desktop, tablet, and mobile, as specified in the [Figma designs](https://www.figma.com/file/EO5AaNCuzzFL7X5gSY7HwQ/Sprint-4_-Around-The-U.S.-_-desktop-%2B-mobile?t=3hvVWRz9LUFsxyNn-6).
 
 ---
 

@@ -2,8 +2,8 @@
 //                          Cards Template                                  //
 //=========================================================================//
 
-const cardTemplate = document.querySelector(".card-template"); // Template//
-const cardsContainer = document.querySelector(".cards__list"); // Cards Container//
+const cardTemplate = document.querySelector(".card-template");
+const cardsContainer = document.querySelector(".cards__list");
 
 const initialCards = [
   {
@@ -33,13 +33,13 @@ const initialCards = [
 ];
 
 function getCardElement(data) {
-  const cardElement = cardTemplate.content.cloneNode(true); // Clone Template //
-  const cardImage = cardElement.querySelector(".card__image"); // Select Image //
-  const cardTitle = cardElement.querySelector(".card__title"); // Select Title //
+  const cardElement = cardTemplate.content.cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
 
-  cardImage.src = data.link; // Set link to Image //
-  cardImage.alt = data.name; // Set alt for Image //
-  cardTitle.textContent = data.name; // Set Title text //
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardTitle.textContent = data.name;
 
   return cardElement;
 }
@@ -57,26 +57,17 @@ renderCards(initialCards);
 //                          Profil Edit Button / Open / Close               //
 //=========================================================================//
 
-// Select elements
-const editButton = document.querySelector(".profile__edit-button"); // "Edit" button
-const modal = document.querySelector(".modal"); // The modal element
-const closeButton = document.querySelector(".modal__close-btn"); // Close button
+const editButton = document.querySelector(".profile__edit-button");
+const modal = document.querySelector(".modal");
+const closeButton = document.querySelector(".modal__close-btn");
 
-// Function to open the modal
-function openModal() {
-  modal.classList.add("modal_opened"); // Adds the class to show the modal
-}
-
-// Function to close the modal
 function closeModal() {
-  modal.classList.remove("modal_opened"); // Removes the class to hide the modal
+  modal.classList.remove("modal_opened");
 }
 
-// Event listeners
-editButton.addEventListener("click", openModal); // Opens modal on "Edit" button click
-closeButton.addEventListener("click", closeModal); // Closes modal on close button click
+editButton.addEventListener("click", openModal);
+closeButton.addEventListener("click", closeModal);
 
-// Close modal when clicking on the overlay (background outside modal content)
 modal.addEventListener("click", (event) => {
   if (event.target === modal) {
     closeModal();
@@ -86,40 +77,30 @@ modal.addEventListener("click", (event) => {
 //==========================================================================//
 //                          Enter and Save Modal                            //
 //=========================================================================//
-// Select profile elements
-const profileName = document.querySelector(".profile__title"); // Name on the profile
-const profileDescription = document.querySelector(".profile__description"); // Description on the profile
+const profileName = document.querySelector(".profile__title");
+const profileDescription = document.querySelector(".profile__description");
 
-// Select modal input fields
-const nameInput = document.querySelector(".modal__input[name='name']"); // "Name" input field
+const nameInput = document.querySelector(".modal__input[name='name']");
 const descriptionInput = document.querySelector(
   ".modal__input[name='description']"
-); // "About me" input field
+);
 
-// Select form element
-const profileForm = document.querySelector(".modal__form"); // The form inside the modal
+const profileForm = document.querySelector(".modal__form");
 
-// Function to open the modal and populate fields
 function openModal() {
-  // Populate the modal input fields with current profile data
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
 
-  // Show the modal
   modal.classList.add("modal_opened");
 }
 
-// Function to handle form submission
 function handleProfileFormSubmit(event) {
-  event.preventDefault(); // Prevent default form submission behavior
+  event.preventDefault();
 
-  // Update profile with new data from the modal inputs
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
 
-  // Close the modal
   closeModal();
 }
 
-// Add event listener for form submission
 profileForm.addEventListener("submit", handleProfileFormSubmit);

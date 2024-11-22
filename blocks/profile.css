@@ -38,7 +38,7 @@
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  background: transparent url("../images/Edit Button.svg") center no-repeat;
+  background: transparent url("../images/Edit_Button.svg") center no-repeat;
   cursor: pointer;
   border: 1px solid #fff;
   margin-right: 10px;
@@ -65,7 +65,7 @@
 }
 
 .profile__add-button {
-  background: transparent url("../images/Add Button.svg") center no-repeat;
+  background: transparent url("../images/Add_Button.svg") center no-repeat;
   width: 150px;
   height: 50px;
   cursor: pointer;
@@ -76,7 +76,7 @@
   opacity: 1;
   transition: opacity 0.3s ease;
   padding: 0;
-  flex-shrink: 0; /* Prevents the button from shrinking */ /*https://prnt.sc/V1EhLbGyb0tZ */
+  flex-shrink: 0;
 }
 
 .profile__add-button:hover {

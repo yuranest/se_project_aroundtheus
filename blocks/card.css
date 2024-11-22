@@ -22,7 +22,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding: 25px 20px 21px 20px; /* padding change from: padding: 25px 15px 21px 31px; */
+  padding: 25px 20px 21px 20px;
   color: black;
 }
 
@@ -44,9 +44,9 @@
   border: none;
   cursor: pointer;
   opacity: 1;
-  transition: opacity 0.3s ease; /* changed: Transition for opacity */
+  transition: opacity 0.3s ease;
 }
 
 .card__like-button:hover {
-  opacity: 0.5; /* changed: Adjusted this value to control the hover opacity */
+  opacity: 0.5;
 }
