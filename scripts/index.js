@@ -134,10 +134,47 @@ const addCardForm = addCardModal.querySelector(".modal__form");
 addCardForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = descriptionInput.value;
+  const placeName = addCardForm.placeName.value;
+  const imageLink = addCardForm.imageLink.value;
 
-  closeModal();
+  const newCard = getCardElement({ name: placeName, link: imageLink });
+  cardsContainer.prepend(newCard);
+
+  addCardForm.reset();
+  closeModal(addCardModal);
+});
+
+//==========================================================================//
+//                          Like Button Active                              //
+//=========================================================================//
+const likeButtons = document.querySelectorAll(".card__like-button");
+
+likeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    button.classList.toggle("card__like-button_active");
+  });
+});
+
+//==========================================================================//
+//                          Delete Card Button                              //
+//=========================================================================//
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
+
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardTitle.textContent = data.name;
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  return cardElement;
 }
-
-profileForm.addEventListener("submit", handleProfileFormSubmit);
