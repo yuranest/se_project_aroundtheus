@@ -37,7 +37,6 @@
   height: 40px;
   cursor: pointer;
   padding: 0;
-  margin: 0;
 }
 .modal__close-btn:hover {
   opacity: 0.6;
