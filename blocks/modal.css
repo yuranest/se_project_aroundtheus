@@ -139,6 +139,7 @@
   .modal__image-container {
     max-width: 240px;
     max-height: 299px;
+    margin: 0 auto;
   }
 
   .modal__close-btn {
