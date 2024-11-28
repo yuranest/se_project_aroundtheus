@@ -178,3 +178,33 @@ function getCardElement(data) {
 
   return cardElement;
 }
+
+//==========================================================================//
+//                          Card Image Modal                              //
+//=========================================================================//
+
+const imageModal = document.querySelector(".modal_type_image");
+const imageElement = imageModal.querySelector(".modal__image");
+const captionElement = imageModal.querySelector(".modal__caption");
+const imageModalCloseButton = imageModal.querySelector(
+  ".modal__close-btn_image"
+);
+
+function openImageModal(imageSrc, caption) {
+  imageElement.src = imageSrc;
+  imageElement.alt = caption;
+  captionElement.textContent = caption;
+  openModal(imageModal);
+}
+
+document.querySelectorAll(".card__image").forEach((image) => {
+  image.addEventListener("click", () => {
+    const imageSrc = image.src;
+    const caption = image.alt;
+    openImageModal(imageSrc, caption);
+  });
+});
+
+imageModalCloseButton.addEventListener("click", () => {
+  closeModal(imageModal);
+});
