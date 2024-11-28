@@ -150,6 +150,7 @@
   .modal__close-btn_image {
     background-image: url(../images/img_smal_Close_Icon.svg);
     top: -25px;
+    position: absolute;
   }
   .modal__save-btn {
     margin-top: 15px;
