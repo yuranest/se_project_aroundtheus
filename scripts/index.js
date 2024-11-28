@@ -33,13 +33,33 @@ const initialCards = [
 ];
 
 function getCardElement(data) {
-  const cardElement = cardTemplate.content.cloneNode(true);
+  const cardElement = cardTemplate.content
+    .querySelector(".card")
+    .cloneNode(true);
+
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
 
   cardImage.src = data.link;
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
+
+  // Add Like Button Functionality
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  // Add Delete Functionality
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  // Add Click Event for Image Modal
+  cardImage.addEventListener("click", () => {
+    openImageModal(cardImage.src, cardImage.alt);
+  });
 
   return cardElement;
 }
@@ -72,7 +92,17 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
 
+// Load profile data into inputs when opening the modal
 editProfileButton.addEventListener("click", () => {
+  const nameInput = editProfileForm.querySelector("[name='name']");
+  const descriptionInput = editProfileForm.querySelector(
+    "[name='description']"
+  );
+  nameInput.value = document.querySelector(".profile__title").textContent;
+  descriptionInput.value = document.querySelector(
+    ".profile__description"
+  ).textContent;
+
   openModal(editProfileModal);
 });
 
@@ -107,14 +137,6 @@ const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector(".modal_type_add-card");
 const addCardModalCloseButton = addCardModal.querySelector(".modal__close-btn");
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-}
-
 addCardButton.addEventListener("click", () => {
   openModal(addCardModal);
 });
@@ -145,41 +167,6 @@ addCardForm.addEventListener("submit", (event) => {
 });
 
 //==========================================================================//
-//                          Like Button Active                              //
-//=========================================================================//
-const likeButtons = document.querySelectorAll(".card__like-button");
-
-likeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    button.classList.toggle("card__like-button_active");
-  });
-});
-
-//==========================================================================//
-//                          Delete Card Button                              //
-//=========================================================================//
-
-function getCardElement(data) {
-  const cardElement = cardTemplate.content
-    .querySelector(".card")
-    .cloneNode(true);
-
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  cardTitle.textContent = data.name;
-
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  return cardElement;
-}
-
-//==========================================================================//
 //                          Card Image Modal                              //
 //=========================================================================//
 
@@ -196,14 +183,6 @@ function openImageModal(imageSrc, caption) {
   captionElement.textContent = caption;
   openModal(imageModal);
 }
-
-document.querySelectorAll(".card__image").forEach((image) => {
-  image.addEventListener("click", () => {
-    const imageSrc = image.src;
-    const caption = image.alt;
-    openImageModal(imageSrc, caption);
-  });
-});
 
 imageModalCloseButton.addEventListener("click", () => {
   closeModal(imageModal);
