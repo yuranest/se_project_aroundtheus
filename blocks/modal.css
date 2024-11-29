@@ -135,22 +135,12 @@
     padding: 22px 25px;
   }
 
-  .modal__image-container {
-    max-width: 240px;
-    max-height: 299px;
-  }
-
   .modal__close-btn {
     background-image: url(../images/smal_Close_Icon.svg);
     top: -35px;
     right: -13px;
   }
 
-  .modal__close-btn_type_image {
-    background-image: url(../images/img_smal_Close_Icon.svg);
-    top: -28px;
-    right: -42px;
-  }
   .modal__save-btn {
     margin-top: 15px;
     padding: 14px 100px;
@@ -169,5 +159,16 @@
   .modal__input {
     font-size: 14px;
     line-height: 17px;
+  }
+
+  .modal__close-btn_type_image {
+    background-image: url(../images/img_smal_Close_Icon.svg);
+    top: -28px;
+    right: -42px;
+  }
+
+  .modal__image {
+    max-width: 240px;
+    max-height: 299px;
   }
 }
