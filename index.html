@@ -74,55 +74,81 @@
     <!-- ========================================================= -->
     <div class="modal modal_type_edit-profile">
       <div class="modal__container">
-        <button class="modal__close-btn" type="button"></button>
+        <!-- Standardized close button class -->
+        <button
+          class="modal__close-btn modal__close-btn_type_edit-profile"
+          type="button"
+        ></button>
         <h3 class="modal__title">Edit Profile</h3>
+        <!-- Standardized form class -->
         <form class="modal__form">
           <input
             type="text"
-            class="modal__input"
+            class="modal__input modal__input_type_name"
             name="name"
             placeholder="Jacques Cousteau"
             required
           />
           <input
             type="text"
-            class="modal__input"
+            class="modal__input modal__input_type_description"
             name="description"
             placeholder="Explorer"
             required
           />
-          <button type="submit" class="modal__save-btn">Save</button>
+          <!-- Standardized save button class -->
+          <button
+            type="submit"
+            class="modal__save-btn modal__save-btn_type_save"
+          >
+            Save
+          </button>
         </form>
       </div>
     </div>
     <!-- Edit cad modal-->
     <div class="modal modal_type_add-card">
       <div class="modal__container">
-        <button class="modal__close-btn" type="button"></button>
+        <!-- Standardized close button class -->
+        <button
+          class="modal__close-btn modal__close-btn_type_add-card"
+          type="button"
+        ></button>
         <h3 class="modal__title">New Place</h3>
+        <!-- Standardized form class -->
         <form class="modal__form">
           <input
             type="text"
-            class="modal__input"
+            class="modal__input modal__input_type_title"
             name="placeName"
             placeholder="Title"
             required
           />
           <input
             type="url"
-            class="modal__input"
+            class="modal__input modal__input_type_url"
             name="imageLink"
             placeholder="Image URL"
             required
           />
-          <button type="submit" class="modal__save-btn">Create</button>
+          <!-- Standardized save button class -->
+          <button
+            type="submit"
+            class="modal__save-btn modal__save-btn_type_create"
+          >
+            Create
+          </button>
         </form>
       </div>
     </div>
     <!-- Card image modal-->
     <div class="modal modal_type_image">
       <div class="modal__image-container">
-        <button class="modal__close-btn_image" type="button"></button>
+        <!-- fix / Standardized close button class -->
+        <button
+          class="modal__close-btn modal__close-btn_type_image"
+          type="button"
+        ></button>
         <img class="modal__image" src="" alt="Preview" />
         <p class="modal__caption"></p>
       </div>
