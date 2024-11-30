@@ -14,6 +14,10 @@ const profileTitleElement = document.querySelector(".profile__title");
 const profileDescriptionElement = document.querySelector(
   ".profile__description"
 );
+const editProfileNameInput = editProfileForm.querySelector("[name='name']");
+const editProfileDescriptionInput = editProfileForm.querySelector(
+  "[name='description']"
+);
 
 const addCardButton = document.querySelector(".profile__add-button");
 const addCardModal = document.querySelector(".modal_type_add-card");
@@ -21,6 +25,8 @@ const addCardModalCloseButton = addCardModal.querySelector(
   ".modal__close-btn_type_add-card"
 );
 const addCardForm = addCardModal.querySelector(".modal__form");
+const addCardTitleInput = addCardForm.querySelector("[name='placeName']");
+const addCardUrlInput = addCardForm.querySelector("[name='imageLink']");
 
 const imageModal = document.querySelector(".modal_type_image");
 const imageElement = imageModal.querySelector(".modal__image");
@@ -74,17 +80,14 @@ function getCardElement(data) {
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
 
-  // Add Like Button Functionality
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
 
-  // Add Delete Functionality
   deleteButton.addEventListener("click", () => {
     cardElement.remove();
   });
 
-  // Add Click Event for Image Modal
   cardImage.addEventListener("click", () => {
     openImageModal(cardImage.src, cardImage.alt);
   });
@@ -113,14 +116,9 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
 
-// Load profile data into inputs when opening the modal
 editProfileButton.addEventListener("click", () => {
-  const nameInput = editProfileForm.querySelector("[name='name']");
-  const descriptionInput = editProfileForm.querySelector(
-    "[name='description']"
-  );
-  nameInput.value = profileTitleElement.textContent;
-  descriptionInput.value = profileDescriptionElement.textContent;
+  editProfileNameInput.value = profileTitleElement.textContent;
+  editProfileDescriptionInput.value = profileDescriptionElement.textContent;
 
   openModal(editProfileModal);
 });
@@ -138,12 +136,8 @@ editProfileModal.addEventListener("click", (event) => {
 editProfileForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const nameInput = editProfileForm.querySelector("[name='name']");
-  const descriptionInput = editProfileForm.querySelector(
-    "[name='description']"
-  );
-  profileTitleElement.textContent = nameInput.value;
-  profileDescriptionElement.textContent = descriptionInput.value;
+  profileTitleElement.textContent = editProfileNameInput.value;
+  profileDescriptionElement.textContent = editProfileDescriptionInput.value;
 
   closeModal(editProfileModal);
 });
@@ -169,10 +163,10 @@ addCardModal.addEventListener("click", (event) => {
 addCardForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const placeName = addCardForm.placeName.value;
-  const imageLink = addCardForm.imageLink.value;
-
-  const newCard = getCardElement({ name: placeName, link: imageLink });
+  const newCard = getCardElement({
+    name: addCardTitleInput.value,
+    link: addCardUrlInput.value,
+  });
   cardsContainer.prepend(newCard);
 
   addCardForm.reset();
@@ -184,7 +178,9 @@ addCardForm.addEventListener("submit", (event) => {
 //=========================================================================//
 
 function openImageModal(imageSrc, caption) {
-  imageElement.src = imageSrc;
+  // Provide a default fallback if `imageSrc` is empty
+  const validSrc = imageSrc || "path/to/placeholder.jpg";
+  imageElement.src = validSrc;
   imageElement.alt = caption;
   captionElement.textContent = caption;
   openModal(imageModal);
@@ -193,23 +189,3 @@ function openImageModal(imageSrc, caption) {
 imageModalCloseButton.addEventListener("click", () => {
   closeModal(imageModal);
 });
-
-function openModal(modal) {
-  modal.style.display = "flex"; // Set display to flex first
-  requestAnimationFrame(() => {
-    modal.classList.add("modal_opened"); // Add class for transitions
-  });
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened"); // Start transition
-  modal.addEventListener(
-    "transitionend",
-    () => {
-      if (!modal.classList.contains("modal_opened")) {
-        modal.style.display = "none"; // Hide modal after transition ends
-      }
-    },
-    { once: true }
-  );
-}

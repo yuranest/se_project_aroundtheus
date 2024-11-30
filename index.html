@@ -46,7 +46,7 @@
         <!-- ========================================================= -->
         <!--                            Card Section                   -->
         <!-- ========================================================= -->
-        <section class="cards page__section">
+        <div class="cards page__section">
           <template class="card-template">
             <li class="card">
               <img class="card__image" src="#" alt="" />
@@ -58,7 +58,7 @@
             </li>
           </template>
           <ul class="cards__list"></ul>
-        </section>
+        </div>
 
         <!-- ========================================================= -->
         <!--                            Footer                         -->
@@ -74,13 +74,11 @@
     <!-- ========================================================= -->
     <div class="modal modal_type_edit-profile">
       <div class="modal__container">
-        <!-- Standardized close button class -->
         <button
           class="modal__close-btn modal__close-btn_type_edit-profile"
           type="button"
         ></button>
         <h3 class="modal__title">Edit Profile</h3>
-        <!-- Standardized form class -->
         <form class="modal__form">
           <input
             type="text"
@@ -96,7 +94,6 @@
             placeholder="Explorer"
             required
           />
-          <!-- Standardized save button class -->
           <button
             type="submit"
             class="modal__save-btn modal__save-btn_type_save"
@@ -109,13 +106,11 @@
     <!-- Edit cad modal-->
     <div class="modal modal_type_add-card">
       <div class="modal__container">
-        <!-- Standardized close button class -->
         <button
           class="modal__close-btn modal__close-btn_type_add-card"
           type="button"
         ></button>
         <h3 class="modal__title">New Place</h3>
-        <!-- Standardized form class -->
         <form class="modal__form">
           <input
             type="text"
@@ -131,7 +126,6 @@
             placeholder="Image URL"
             required
           />
-          <!-- Standardized save button class -->
           <button
             type="submit"
             class="modal__save-btn modal__save-btn_type_create"
@@ -144,12 +138,11 @@
     <!-- Card image modal-->
     <div class="modal modal_type_image">
       <div class="modal__image-container">
-        <!-- fix / Standardized close button class -->
         <button
           class="modal__close-btn modal__close-btn_type_image"
           type="button"
         ></button>
-        <img class="modal__image" src="" alt="Preview" />
+        <img class="modal__image" src="path/to/placeholder.jpg" alt="Preview" />
         <p class="modal__caption"></p>
       </div>
     </div>
