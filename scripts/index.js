@@ -179,7 +179,7 @@ addCardForm.addEventListener("submit", (event) => {
 
 function openImageModal(imageSrc, caption) {
   // Provide a default fallback if `imageSrc` is empty
-  const validSrc = imageSrc || "path/to/placeholder.jpg";
+  const validSrc = imageSrc || "./images/NoImage.jpg";
   imageElement.src = validSrc;
   imageElement.alt = caption;
   captionElement.textContent = caption;
