@@ -1,3 +1,13 @@
+// Initialize form validation
+enableValidation({
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-btn",
+  inactiveButtonClass: "modal__save-btn_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+});
+
 //==========================================================================//
 //                          DOM Element Constants                           //
 //=========================================================================//
@@ -34,6 +44,35 @@ const captionElement = imageModal.querySelector(".modal__caption");
 const imageModalCloseButton = imageModal.querySelector(
   ".modal__close-btn_type_image"
 );
+
+//==========================================================================//
+//                          Utility Functions                               //
+//=========================================================================//
+
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscapeKey);
+}
+
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscapeKey);
+}
+
+function handleEscapeKey(event) {
+  if (event.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    if (openedModal) {
+      closeModal(openedModal);
+    }
+  }
+}
+
+function handleOverlayClick(event) {
+  if (event.target.classList.contains("modal_opened")) {
+    closeModal(event.target);
+  }
+}
 
 //==========================================================================//
 //                          Cards Template                                  //
@@ -105,39 +144,7 @@ function renderCards(cardsArray) {
 renderCards(initialCards);
 
 //==========================================================================//
-//                          Modal Functions                                 //
-//=========================================================================//
-
-// Open Modal with ESC key listener
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", closeOnEsc);
-}
-
-// Close Modal and remove ESC key listener
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", closeOnEsc);
-}
-
-// Close Modal by Clicking on the Overlay
-document.addEventListener("click", (event) => {
-  const openedModal = document.querySelector(".modal_opened");
-  if (openedModal && event.target === openedModal) {
-    closeModal(openedModal);
-  }
-});
-
-// Close Modal by Pressing ESC
-function closeOnEsc(event) {
-  if (event.key === "Escape") {
-    const openedModal = document.querySelector(".modal_opened");
-    if (openedModal) closeModal(openedModal);
-  }
-}
-
-//==========================================================================//
-//                          Profile Modal                                   //
+//                          Profile Edit Button / Open / Close              //
 //=========================================================================//
 
 editProfileButton.addEventListener("click", () => {
@@ -151,6 +158,8 @@ editProfileModalCloseButton.addEventListener("click", () => {
   closeModal(editProfileModal);
 });
 
+editProfileModal.addEventListener("mousedown", handleOverlayClick);
+
 editProfileForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -161,7 +170,7 @@ editProfileForm.addEventListener("submit", (event) => {
 });
 
 //==========================================================================//
-//                          Add Card Modal                                  //
+//                          Add Card Button / Open / Close                  //
 //=========================================================================//
 
 addCardButton.addEventListener("click", () => {
@@ -171,6 +180,8 @@ addCardButton.addEventListener("click", () => {
 addCardModalCloseButton.addEventListener("click", () => {
   closeModal(addCardModal);
 });
+
+addCardModal.addEventListener("mousedown", handleOverlayClick);
 
 addCardForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -190,7 +201,6 @@ addCardForm.addEventListener("submit", (event) => {
 //=========================================================================//
 
 function openImageModal(imageSrc, caption) {
-  // Provide a default fallback if `imageSrc` is empty
   const validSrc = imageSrc || "./images/NoImage.jpg";
   imageElement.src = validSrc;
   imageElement.alt = caption;
@@ -201,3 +211,5 @@ function openImageModal(imageSrc, caption) {
 imageModalCloseButton.addEventListener("click", () => {
   closeModal(imageModal);
 });
+
+imageModal.addEventListener("mousedown", handleOverlayClick);
