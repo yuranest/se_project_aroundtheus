@@ -105,16 +105,40 @@ function renderCards(cardsArray) {
 renderCards(initialCards);
 
 //==========================================================================//
-//                          Profile Edit Button / Open / Close              //
+//                          Modal Functions                                 //
 //=========================================================================//
 
+// Open Modal with ESC key listener
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeOnEsc);
 }
 
+// Close Modal and remove ESC key listener
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeOnEsc);
 }
+
+// Close Modal by Clicking on the Overlay
+document.addEventListener("click", (event) => {
+  const openedModal = document.querySelector(".modal_opened");
+  if (openedModal && event.target === openedModal) {
+    closeModal(openedModal);
+  }
+});
+
+// Close Modal by Pressing ESC
+function closeOnEsc(event) {
+  if (event.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    if (openedModal) closeModal(openedModal);
+  }
+}
+
+//==========================================================================//
+//                          Profile Modal                                   //
+//=========================================================================//
 
 editProfileButton.addEventListener("click", () => {
   editProfileNameInput.value = profileTitleElement.textContent;
@@ -127,12 +151,6 @@ editProfileModalCloseButton.addEventListener("click", () => {
   closeModal(editProfileModal);
 });
 
-editProfileModal.addEventListener("click", (event) => {
-  if (event.target === editProfileModal) {
-    closeModal(editProfileModal);
-  }
-});
-
 editProfileForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -143,7 +161,7 @@ editProfileForm.addEventListener("submit", (event) => {
 });
 
 //==========================================================================//
-//                          Add Card Button / Open / Close                  //
+//                          Add Card Modal                                  //
 //=========================================================================//
 
 addCardButton.addEventListener("click", () => {
@@ -152,12 +170,6 @@ addCardButton.addEventListener("click", () => {
 
 addCardModalCloseButton.addEventListener("click", () => {
   closeModal(addCardModal);
-});
-
-addCardModal.addEventListener("click", (event) => {
-  if (event.target === addCardModal) {
-    closeModal(addCardModal);
-  }
 });
 
 addCardForm.addEventListener("submit", (event) => {
