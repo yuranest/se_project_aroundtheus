@@ -61,8 +61,7 @@
 .modal__form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  position: relative;
+  gap: 10px;
 }
 
 .modal__input {
@@ -76,9 +75,16 @@
   border-bottom: 1px solid #f00;
 }
 
-.modal__error_visible {
+.modal__error {
+  margin-top: 5px;
   color: #ff0000;
   font-size: 12px;
+  top: calc(100% + 5px);
+  visibility: hidden;
+}
+
+.modal__error_visible {
+  visibility: visible;
 }
 
 .modal__save-btn {
