@@ -61,7 +61,6 @@
 .modal__form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
 }
 
 .modal__input {
@@ -69,7 +68,10 @@
   line-height: 17px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  outline: none;
 }
+
 .modal__input_type_error {
   border-bottom: 1px solid #f00;
 }
