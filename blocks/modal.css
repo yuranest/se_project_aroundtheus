@@ -12,7 +12,7 @@
   align-items: center;
   z-index: 99;
   transition: opacity 0.5s ease, visibility 0.5s ease;
-  pointer-events: none; /* add Prevent clicks when hidden */
+  pointer-events: none;
 }
 
 .modal_opened {
@@ -62,6 +62,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  position: relative;
 }
 
 .modal__input {
@@ -72,11 +73,11 @@
   padding-bottom: 13px;
 }
 .modal__input_type_error {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #f00;
 }
 
 .modal__error_visible {
-  color: red;
+  color: #ff0000;
   font-size: 12px;
 }
 

@@ -1,3 +1,5 @@
+import { enableValidation } from "./validate.js";
+
 // Initialize form validation
 enableValidation({
   formSelector: ".modal__form",

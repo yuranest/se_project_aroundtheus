@@ -1,4 +1,3 @@
-// Shows the input error message
 function showInputError(formElement, inputElement, errorMessage, selectors) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(selectors.inputErrorClass);
@@ -6,7 +5,6 @@ function showInputError(formElement, inputElement, errorMessage, selectors) {
   errorElement.classList.add(selectors.errorClass);
 }
 
-// Hides the input error message
 function hideInputError(formElement, inputElement, selectors) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(selectors.inputErrorClass);
@@ -14,7 +12,6 @@ function hideInputError(formElement, inputElement, selectors) {
   errorElement.classList.remove(selectors.errorClass);
 }
 
-// Checks if the input is valid
 function isValid(formElement, inputElement, selectors) {
   if (!inputElement.validity.valid) {
     showInputError(
@@ -28,11 +25,8 @@ function isValid(formElement, inputElement, selectors) {
   }
 }
 
-// Toggles the state of the submit button
 function toggleButtonState(inputList, buttonElement, selectors) {
-  const hasInvalidInput = inputList.some(
-    (inputElement) => !inputElement.validity.valid
-  );
+  const hasInvalidInput = inputList.some((input) => !input.validity.valid);
   if (hasInvalidInput) {
     buttonElement.classList.add(selectors.inactiveButtonClass);
     buttonElement.disabled = true;
@@ -42,7 +36,6 @@ function toggleButtonState(inputList, buttonElement, selectors) {
   }
 }
 
-// Sets event listeners for form inputs
 function setEventListeners(formElement, selectors) {
   const inputList = Array.from(
     formElement.querySelectorAll(selectors.inputSelector)
@@ -61,16 +54,11 @@ function setEventListeners(formElement, selectors) {
   });
 }
 
-// Enables form validation
-function enableValidation(selectors) {
+export function enableValidation(selectors) {
   const formList = Array.from(
     document.querySelectorAll(selectors.formSelector)
   );
   formList.forEach((formElement) => {
-    formElement.addEventListener("submit", (event) => {
-      event.preventDefault(); // Prevent form submission
-    });
-
     setEventListeners(formElement, selectors);
   });
 }
