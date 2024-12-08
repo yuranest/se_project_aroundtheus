@@ -80,28 +80,32 @@
         ></button>
         <h3 class="modal__title">Edit Profile</h3>
         <form class="modal__form">
-          <input
-            type="text"
-            class="modal__input modal__input_type_name"
-            name="name"
-            id="name"
-            placeholder="Name"
-            minlength="2"
-            maxlength="40"
-            required
-          />
-          <span class="modal__error" id="name-error"></span>
-          <input
-            type="text"
-            class="modal__input modal__input_type_description"
-            name="description"
-            id="description"
-            placeholder="Title"
-            minlength="2"
-            maxlength="200"
-            required
-          />
-          <span class="modal__error" id="description-error"></span>
+          <div class="modal__input-container">
+            <input
+              type="text"
+              class="modal__input modal__input_type_name"
+              name="name"
+              id="name"
+              placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="modal__error" id="name-error"></span>
+          </div>
+          <div class="modal__input-container">
+            <input
+              type="text"
+              class="modal__input modal__input_type_description"
+              name="description"
+              id="description"
+              placeholder="Title"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="modal__error" id="description-error"></span>
+          </div>
           <button
             type="submit"
             class="modal__save-btn modal__save-btn_disabled"
@@ -121,26 +125,30 @@
         ></button>
         <h3 class="modal__title">New Place</h3>
         <form class="modal__form">
-          <input
-            type="text"
-            class="modal__input modal__input_type_title"
-            name="placeName"
-            id="placeName"
-            placeholder="Title"
-            minlength="1"
-            maxlength="30"
-            required
-          />
-          <span class="modal__error" id="placeName-error"></span>
-          <input
-            type="url"
-            class="modal__input modal__input_type_url"
-            name="imageLink"
-            id="imageLink"
-            placeholder="Image URL"
-            required
-          />
-          <span class="modal__error" id="imageLink-error"></span>
+          <div class="modal__input-container">
+            <input
+              type="text"
+              class="modal__input modal__input_type_title"
+              name="placeName"
+              id="placeName"
+              placeholder="Title"
+              minlength="1"
+              maxlength="30"
+              required
+            />
+            <span class="modal__error" id="placeName-error"></span>
+          </div>
+          <div class="modal__input-container">
+            <input
+              type="url"
+              class="modal__input modal__input_type_url"
+              name="imageLink"
+              id="imageLink"
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__error" id="imageLink-error"></span>
+          </div>
           <button
             type="submit"
             class="modal__save-btn modal__save-btn_disabled"

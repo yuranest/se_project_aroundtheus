@@ -61,9 +61,15 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+  gap: 30px;
+}
+
+.modal__input-container {
+  position: relative; /* Create a context for absolute positioning */
 }
 
 .modal__input {
+  position: relative;
   font-weight: 400;
   line-height: 17px;
   border: none;
@@ -77,6 +83,8 @@
 }
 
 .modal__error {
+  left: 0;
+  position: absolute;
   margin-top: 5px;
   color: #ff0000;
   font-size: 12px;
@@ -157,7 +165,7 @@
     max-width: 282px;
     max-height: 322px;
     box-sizing: border-box;
-    padding: 22px 25px;
+    padding: 0 22px 25px;
   }
 
   .modal__close-btn {
