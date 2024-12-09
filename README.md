@@ -4,14 +4,18 @@ Site is live at [https://yuranest.github.io/se_project_aroundtheus/](https://yur
 
 Video demonstration:
 
-- [YouTube](https://youtu.be/lti4sc5kPlw)
-- [Google Drive](https://drive.google.com/file/d/12kbI4ZF40Yytzjm1f8FTlnHSJYw-VMhu/view?usp=drive_link)
+- [YouTube](https://youtu.be/lti4sc5kPlw) Project 3 assignment.
 
 ---
 
 ## Overview
 
-This project, _Around The U.S._, is a responsive web application built with **HTML**, **CSS**, and **JavaScript**. It features dynamic modals, card rendering, and form validation. The design is optimized for seamless operation across desktop, tablet, and mobile devices, as specified in the [Figma designs](https://www.figma.com/file/EO5AaNCuzzFL7X5gSY7HwQ/Sprint-4_-Around-The-U.S.-_-desktop-%2B-mobile?t=3hvVWRz9LUFsxyNn-6).
+This project, _Around The U.S._, is a responsive web application built with **HTML**, **CSS**, and **JavaScript**. It features dynamic modals, card rendering, and form validation. The design is optimized for seamless operation across desktop, tablet, and mobile devices, as specified in the [Figma designs]
+
+- Project 3 (https://www.figma.com/design/Es8zZP3ARGH9JGcw60i3OD/Sprint-3_-Around-the-US?node-id=0-1&node-type=canvas&t=WuqeKHeCxYZBeVIG-0)
+- Project 4 (https://www.figma.com/design/EO5AaNCuzzFL7X5gSY7HwQ/Sprint-4_-Around-The-U.S.-_-desktop-%2B-mobile?node-id=0-1&node-type=canvas&t=5rr06LQzLEsbxLQs-0)
+- Project 5 (https://www.figma.com/design/JFPhASqvZ5pBjQV2ouUlim/Sprint-5_-Around-The-U.S.-_-desktop-%2B-mobile-(Copy)?node-id=0-1&node-type=canvas&t=L3LqTHnHcod3cQpB-0)
+- Project 6 (https://www.figma.com/design/N3zUeequnpvMX807FfYAZW/Sprint-6-Around-The-U.S.?node-id=0-1&node-type=canvas&t=kS9NHWCKLJsgMiFN-0).
 
 ---
 

@@ -1,34 +1,27 @@
-# http://editorconfig.org
+# : https://EditorConfig.org
 
-# A special property that should be specified at the top of the file outside of
-# any sections. Set to true to stop .editorconfig file search on current file
+# Root marker for the EditorConfig file
 root = true
 
+# Default settings for all files
 [*]
-# Indentation style
-# Possible values - tab, space
-indent_style = space
+charset = utf-8                    # Use UTF-8 encoding for all files
+indent_style = space               # Use spaces for indentation
+indent_size = 2                    # Set indentation size to 2 spaces
+end_of_line = lf                   # Use LF for line endings (Unix style)
+trim_trailing_whitespace = true    # Remove trailing whitespace
+insert_final_newline = true        # Ensure files end with a newline
 
-# Indentation size in single-spaced characters
-# Possible values - an integer, tab
-indent_size = 2
-
-# Line ending character
-# Possible values - lf, crlf, cr
-end_of_line = lf
-
-# File character encoding
-# Possible values - latin1, utf-8, utf-16be, utf-16le
-charset = utf-8
-
-# Denotes whether to trim whitespace at the end of lines
-# Possible values - true, false
-trim_trailing_whitespace = true
-
-# Disable for Markdown because trailing whitespace is significant
+# Rules for Markdown files
 [*.md]
-trim_trailing_whitespace = false
+trim_trailing_whitespace = false   # Allow trailing whitespace (Markdown formatting)
 
-# Denotes whether file should end with a newline
-# Possible values - true, false
-insert_final_newline = true
+# Rules for JSON files
+[*.json]
+indent_style = space               # Use spaces for indentation
+indent_size = 2                    # Use 2 spaces for indentation
+
+# Rules for JavaScript, CSS, and HTML files
+[*.{js,css,html}]
+indent_style = space               # Use spaces for indentation
+indent_size = 2                    # Use 2 spaces for indentation
