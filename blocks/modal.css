@@ -3,8 +3,8 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 22px;
+  right: 16px;
   background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   visibility: hidden;
@@ -23,8 +23,9 @@
 
 .modal__container {
   background: #fff;
-  max-width: 430px;
-  padding: 34px 36px 36px;
+  width: 430px;
+  max-height: 322px;
+  padding: 34px 36px 36.51px;
   border-radius: 10px;
   position: relative;
   text-align: left;
@@ -43,7 +44,7 @@
   height: 40px;
   cursor: pointer;
   padding: 0;
-  transition: opacity 0.3s ease; /* add */
+  transition: opacity 0.3s ease;
 }
 .modal__close-btn:hover {
   opacity: 0.6;
@@ -65,7 +66,7 @@
 }
 
 .modal__input-container {
-  position: relative; /* Create a context for absolute positioning */
+  position: relative;
 }
 
 .modal__input {
@@ -74,10 +75,9 @@
   line-height: 17px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  /* margin-top: 20px; */
   outline: none;
-  width: 98%;
-  padding-bottom: 12px;
+  width: 100%;
+  padding: 0 0 13px;
 }
 
 .modal__input_type_error {
@@ -121,6 +121,7 @@
   opacity: 0.5;
   pointer-events: none;
   width: 100%;
+  margin-top: 31px;
 }
 
 .modal__image-container {
@@ -165,7 +166,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 425px) {
   .modal__container {
-    max-width: 282px;
+    width: 282px;
     max-height: 322px;
     box-sizing: border-box;
     padding: 25px 22px 25px;
