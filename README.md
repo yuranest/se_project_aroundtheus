@@ -1,4 +1,4 @@
-# Project 4: Around The U.S.
+# Project 6: Around The U.S.
 
 Site is live at [https://yuranest.github.io/se_project_aroundtheus/](https://yuranest.github.io/se_project_aroundtheus/)
 
@@ -11,7 +11,7 @@ Video demonstration:
 
 ## Overview
 
-This project, _Around The U.S._, is a responsive web layout created with **HTML**, **CSS**, and **JavaScript**. It is designed to adapt seamlessly across various screen sizes, including desktop, tablet, and mobile, as specified in the [Figma designs](https://www.figma.com/file/EO5AaNCuzzFL7X5gSY7HwQ/Sprint-4_-Around-The-U.S.-_-desktop-%2B-mobile?t=3hvVWRz9LUFsxyNn-6).
+This project, _Around The U.S._, is a responsive web application built with **HTML**, **CSS**, and **JavaScript**. It features dynamic modals, card rendering, and form validation. The design is optimized for seamless operation across desktop, tablet, and mobile devices, as specified in the [Figma designs](https://www.figma.com/file/EO5AaNCuzzFL7X5gSY7HwQ/Sprint-4_-Around-The-U.S.-_-desktop-%2B-mobile?t=3hvVWRz9LUFsxyNn-6).
 
 ---
 
@@ -19,26 +19,43 @@ This project, _Around The U.S._, is a responsive web layout created with **HTML*
 
 ### **1. Edit Profile Modal**
 
-- **Modal Pop-Up**:
+- **Dynamic Modal**:
   - Allows users to edit their profile details, such as the name and "About me" fields.
   - Pre-fills the form fields with the current profile details when opened.
 - **Save Functionality**:
   - Updates the profile on the main page when the user clicks "Save."
   - Closes the modal after saving.
+- **Overlay & Button Close**:
+  - Modals can now be closed via overlay click or a generic close button.
 
-### **2. Card Rendering with JavaScript**
+### **2. Add New Place Modal**
 
-- Dynamically generates cards based on an array of data (`initialCards`).
-- **Template Usage**:
-  - Uses an HTML `<template>` element for a reusable card structure.
-  - Populates the template with card titles and image data via JavaScript.
-- **Dynamic Insertion**:
-  - Renders all cards dynamically into the `.cards__list` container.
+- **Form-Driven Card Creation**:
+  - Users can add new cards dynamically by filling out the "Title" and "Image URL" fields.
+- **Validation**:
+  - Form fields validate user input and prevent submission if fields are incomplete or incorrect.
 
-### **3. Responsive Design**
+### **3. Card Rendering with JavaScript**
 
-- Improved input fields for better usability on smaller screens.
-- Adjusted placeholder positioning for `.modal__input`.
+- **Dynamic Card Population**:
+  - Cards are dynamically generated from the `initialCards` array and user input.
+- **Interactive Features**:
+  - Includes like toggling, delete functionality, and full-image modal previews.
+
+### **4. Form Validation**
+
+- **Custom Validation**:
+  - All forms validate user input and provide real-time feedback.
+- **Reusable Functions**:
+  - Validation logic is modular and reusable across multiple forms.
+- **Error Styling**:
+  - Errors are styled dynamically with CSS classes.
+
+### **5. Responsive Design**
+
+- Improved design for input fields and buttons across all screen sizes.
+- Modal layouts adapt seamlessly for mobile and desktop users.
+- Placeholder text and error messages are styled for optimal readability.
 
 ---
 

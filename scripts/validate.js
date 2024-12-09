@@ -3,8 +3,7 @@ function showInputError(formElement, inputElement, errorMessage, selectors) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(selectors.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add(selectors.errorClass);
-  errorElement.style.visibility = "visible"; // Ensure error message is displayed
+  errorElement.classList.add(selectors.errorClass); // Ensure CSS handles visibility
 }
 
 // Hides the input error message
@@ -12,8 +11,7 @@ function hideInputError(formElement, inputElement, selectors) {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(selectors.inputErrorClass);
   errorElement.textContent = "";
-  errorElement.classList.remove(selectors.errorClass);
-  errorElement.style.visibility = "hidden"; // Hide error message
+  errorElement.classList.remove(selectors.errorClass); // Ensure CSS handles visibility
 }
 
 // Checks if the input is valid
@@ -77,5 +75,4 @@ function enableValidation(selectors) {
   });
 }
 
-// Export the enableValidation function for use in index.js
 export { enableValidation };
