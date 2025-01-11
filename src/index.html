@@ -13,14 +13,13 @@
     />
     <meta name="author" content="Yuranest" />
     <title>Around The U.S.</title>
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="shortcut icon" href="../images/favicon.ico" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/Logo.svg"
+          src="<%=require('./images/Logo.svg')%>"
           alt="Around the U.S. logo"
           class="header__logo"
         />
@@ -30,7 +29,7 @@
         <section class="profile page__section">
           <img
             class="profile__avatar"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Jacques Cousteau's avatar"
           />
 
@@ -157,10 +156,13 @@
           class="modal__close-btn modal__close-btn_type_image"
           type="button"
         ></button>
-        <img class="modal__image" src="./images/NoImage.jpg" alt="Preview" />
+        <img
+          class="modal__image"
+          src="<%=require('./images/NoImage.jpg')%>"
+          alt="Preview"
+        />
         <p class="modal__caption"></p>
       </div>
     </div>
-    <script type="module" src="./pages/index.js"></script>
   </body>
 </html>
