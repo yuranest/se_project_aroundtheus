@@ -1,6 +1,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import "../pages/index.css";
+import "../styles/index.css"; // Updated path
+
 // Cache constant DOM elements at the top
 const imageModal = document.querySelector(".modal_type_image");
 const modalImage = imageModal.querySelector(".modal__image");
