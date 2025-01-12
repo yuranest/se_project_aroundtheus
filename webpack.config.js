@@ -1,70 +1,67 @@
+// Webpack configuration for Around The U.S. Project
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // Plugin to extract CSS into separate files
+const HtmlWebpackPlugin = require("html-webpack-plugin"); // Plugin to manage HTML file creation
+const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // Plugin to clean the dist folder before each build
 
 module.exports = {
-  devtool: "inline-source-map",
-  entry: {
-    main: "./src/pages/index.js", // Entry point
-  },
+  // Entry point for the application
+  entry: "./src/pages/index.js",
+
+  // Output configuration
   output: {
-    path: path.resolve(__dirname, "dist"), // Output directory
-    filename: "main.js", // Output filename for JS
-    publicPath: "/se_project_aroundtheus/", // Set correct path for GitHub Pages
+    path: path.resolve(__dirname, "dist"), // Directory for bundled files
+    filename: "scripts/[name].[contenthash].js", // JS file naming pattern with content hash for cache busting
+    publicPath: "/", // Path for assets in GitHub Pages
   },
-  target: ["web", "es5"], // Target web and ES5 compatibility
-  stats: "errors-only",
-  mode: "development", // Development mode
+
+  // Define the mode: development or production
+  mode: process.env.NODE_ENV || "development",
+
+  // Development server configuration
   devServer: {
-    static: path.resolve(__dirname, "dist"), // Serve static files from dist
-    compress: true,
-    port: 8080,
-    open: true, // Open in browser automatically
-    liveReload: true, // Enable live reloading
-    hot: false, // Disable hot module replacement
+    static: path.resolve(__dirname, "dist"), // Directory to serve static files
+    compress: true, // Enable gzip compression
+    port: 8080, // Port for the development server
+    open: true, // Open browser automatically
   },
+
+  // Module rules for processing different file types
   module: {
     rules: [
       {
-        test: /\.js$/, // Process JavaScript files
-        loader: "babel-loader",
-        exclude: /node_modules/,
-      },
-      {
         test: /\.css$/, // Process CSS files
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: { importLoaders: 1 },
-          },
-          "postcss-loader", // Process CSS with PostCSS
-        ],
+        use: [MiniCssExtractPlugin.loader, "css-loader"], // Extract CSS and load it
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i, // Handle image files
-        type: "asset/resource",
+        test: /\.(png|jpg|jpeg|svg|gif)$/i, // Process image files
+        type: "asset/resource", // Use asset/resource module type
         generator: {
-          filename: "images/[hash][ext][query]", // Output images to 'images' folder
+          filename: "images/[name].[hash][ext]", // Image file naming pattern with hash
         },
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf)$/i, // Handle font files
-        type: "asset/resource",
-        generator: {
-          filename: "fonts/[hash][ext][query]", // Output fonts to 'fonts' folder
+        test: /\.m?js$/, // Process JavaScript files
+        exclude: /node_modules/, // Exclude node_modules
+        use: {
+          loader: "babel-loader", // Use Babel loader for transpilation
+          options: {
+            presets: ["@babel/preset-env"], // Preset for modern JavaScript compatibility
+          },
         },
       },
     ],
   },
+
+  // Plugins to extend Webpack functionality
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html", // Use HTML template
-    }),
-    new CleanWebpackPlugin(), // Clean 'dist' folder before each build
     new MiniCssExtractPlugin({
-      filename: "styles/[name].css", // Output CSS to 'styles' folder
+      filename: "styles/[name].[contenthash].css", // CSS file naming pattern with content hash
     }),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html", // Path to the HTML template
+      favicon: "./src/images/favicon.ico", // Path to the favicon file
+    }),
+    new CleanWebpackPlugin(), // Clean the dist folder before each build
   ],
 };
