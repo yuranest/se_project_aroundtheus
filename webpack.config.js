@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"), // Output directory
     filename: "main.js", // Output filename for JS
-    publicPath: "/", // Ensure correct public path for assets
+    publicPath: "/se_project_aroundtheus/", // Set correct path for GitHub Pages
   },
   target: ["web", "es5"], // Target web and ES5 compatibility
   stats: "errors-only",
