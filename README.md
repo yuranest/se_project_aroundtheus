@@ -151,7 +151,3 @@ _Around The U.S._ is a dynamic, responsive web application built with **HTML**, 
    ```
 
 This README provides a comprehensive view of the project’s journey, features, and scope for future work.
-
-```
-
-```
