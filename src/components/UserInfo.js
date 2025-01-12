@@ -5,6 +5,7 @@ class UserInfo {
   }
 
   getUserInfo() {
+    // Return current user info from the page
     return {
       name: this._nameElement.textContent,
       job: this._jobElement.textContent,
@@ -12,6 +13,7 @@ class UserInfo {
   }
 
   setUserInfo({ name, job }) {
+    // Update the user info on the page
     if (name) {
       this._nameElement.textContent = name;
     } else {

@@ -1,68 +1,157 @@
-# Project 8: Around The U.S.
+# **README: Around The U.S.**
 
-OOP
-Site is live at [https://yuranest.github.io/se_project_aroundtheus/](https://yuranest.github.io/se_project_aroundtheus/)
+## **Site Live**
 
----
+[View the live project](https://yuranest.github.io/se_project_aroundtheus/)
 
-## Overview
+## **Video Demonstrations**
 
-This project, _Around The U.S._, is a responsive web application built with **HTML**, **CSS**, and **JavaScript**. It features dynamic modals, card rendering, and form validation. The design is optimized for seamless operation across desktop, tablet, and mobile devices, as specified in the [Figma designs](https://www.figma.com/design/N3zUeequnpvMX807FfYAZW/Sprint-6-Around-The-U.S.?node-id=0-1&node-type=canvas).
-
----
-
-## Features Added in Project 7
-
-### **1. Code Refactoring**
-
-- The project structure was updated to improve maintainability:
-  - Introduced ES6 classes: `Card` and `FormValidator`.
-  - Refactored the codebase to use modular JavaScript, separating concerns for cards and form validation.
-  - Updated the directory structure:
-    - `components/` for JavaScript classes.
-    - `pages/` for the main script and styles.
-
-### **2. Card Class**
-
-- Dynamically generates cards from the `initialCards` array and user input.
-- Handles interactive features:
-  - Like toggling.
-  - Card deletion.
-  - Full-image modal previews.
-- Built with private methods for event listeners and markup preparation.
-
-### **3. FormValidator Class**
-
-- Provides reusable, modular form validation across the project.
-- Features:
-  - Real-time input validation with visual feedback.
-  - Dynamic enabling and disabling of the Submit button.
-  - Resets validation and button states after form submission.
-
-### **4. Improved UX for Modals**
-
-- Forms reset their input values and validation states when reopened.
-- Modals close via:
-  - Clicking the overlay.
-  - Clicking the close button.
-  - Pressing the `Escape` key.
+- [YouTube](https://youtu.be/lti4sc5kPlw) (Sprint 3)
 
 ---
 
-## Technology
+## **Overview**
 
-- **HTML & CSS**: For semantic structure and styling.
-- **JavaScript**: For interactive features, dynamic card rendering, and modular ES6 classes.
-- **Responsive Design**: Utilizes **CSS Grid** and **Flexbox** for adaptive layouts.
-- **Media Queries**: Ensures compatibility with different screen sizes.
+_Around The U.S._ is a dynamic, responsive web application built with **HTML**, **CSS**, and **JavaScript**, evolving over multiple sprints to incorporate advanced features and optimizations. Starting with static layouts, the project has grown to include modular JavaScript, Object-Oriented Programming (OOP), Webpack integration, and modern development practices. The design adheres to responsive design principles for seamless usage across devices.
 
 ---
 
-## Installation
+## **Project Timeline and Key Features**
+
+### **1. Sprint 1: Static Layout and Semantics**
+
+- **Focus**: Semantic HTML and CSS for foundational layout.
+- **Features**:
+  - Grid-based layout for the gallery.
+  - Flexbox for profile and navigation elements.
+
+---
+
+### **2. Sprint 2: Advanced HTML and CSS**
+
+- **Focus**: Improved layouts and advanced CSS techniques.
+- **Features**:
+  - Responsive design with media queries.
+  - Placeholder text styling and accessibility improvements.
+
+---
+
+### **3. Sprint 3: Adaptive Web Design**
+
+- **Focus**: Enhanced responsiveness and layout adaptability.
+- **Features**:
+  - CSS Grid and Flexbox for adaptive designs.
+  - Mobile-first design optimization.
+
+---
+
+### **4. Sprint 4: Basic JavaScript and DOM Manipulation**
+
+- **Focus**: Interactive features via DOM manipulation.
+- **Features**:
+  - Dynamic card rendering using `initialCards`.
+  - Edit profile modal with pre-filled inputs.
+
+---
+
+### **5. Sprint 5: JavaScript Program Logic and Methods**
+
+- **Focus**: Advanced JavaScript logic for interactivity.
+- **Features**:
+  - Form-driven card creation with validation.
+  - Improved modal interactions and transitions.
+
+---
+
+### **6. Sprint 6: Objects and Event Handling**
+
+- **Focus**: Object encapsulation and event handling.
+- **Features**:
+  - Modular form validation logic.
+  - Enhanced modal handling for user-friendly UX.
+
+---
+
+### **7. Sprint 7: Introduction to Object-Oriented Programming**
+
+- **Focus**: Refactoring to ES6 modular classes.
+- **Features**:
+  - Classes introduced:
+    - `Card` for card rendering and interactions.
+    - `Popup` and `PopupWithImage` for modal behavior.
+    - `FormValidator` for reusable form validation.
+  - Dynamic card rendering and validation logic.
+
+---
+
+### **8. Sprint 8: Advanced OOP and Webpack Integration**
+
+- **Focus**: Automation and performance optimization.
+- **Features**:
+  - Webpack for bundling, minification, and asset management.
+  - Babel for JavaScript transpilation.
+  - PostCSS for CSS optimization.
+  - Enhanced directory structure:
+    - `components/` for modular JavaScript.
+    - `pages/` for main scripts and styles.
+  - Favicon integration via Webpack.
+
+---
+
+### **Room for Future Sprints**
+
+- **Sprint 9**: Asynchronous JavaScript and APIs.
+- **Sprint 10**: Introduction to React.js for dynamic front-end development.
+- **Sprint 11**: React Routing and state management with hooks and context.
+- **Sprint 12-16**: Full-stack integration with Node.js, Express.js, authentication, and final project deployment.
+
+---
+
+## **Current Features**
+
+- **Profile Management**:
+
+  - Edit user name and description via a pre-filled modal.
+  - Changes reflect dynamically on the page.
+
+- **Dynamic Card Handling**:
+
+  - Add new cards dynamically through a modal form.
+  - Cards feature interactive like toggling, deletion, and image previews.
+
+- **Responsive Design**:
+
+  - Mobile-first design with CSS Grid and Flexbox.
+  - Media queries ensure seamless operation on all devices.
+
+- **Form Validation**:
+
+  - Real-time input validation with error feedback.
+  - Submit button dynamically toggles between active and inactive states.
+
+- **Asset Optimization**:
+  - Images, fonts, and favicon processed via Webpack.
+  - JavaScript and CSS minified for production builds.
+
+## Technology Stack
+
+- **HTML5 & CSS3**: Semantic and responsive layouts.
+- **JavaScript (ES6)**: Interactive features, modular programming.
+- **Webpack**: Asset bundling and optimization.
+- **PostCSS**: Minification and autoprefixing.
+- **Babel**: JavaScript transpilation for browser compatibility.
+
+---
+
+## **Installation**
 
 1. Clone the repository:
    ```bash
    git clone git@github.com:yuranest/se_project_aroundtheus.git
    ```
-2. Open the project in a local editor.
-3. Start a local server (e.g., Live Server) to run the project.
+
+This README provides a comprehensive view of the project’s journey, features, and scope for future work.
+
+```
+
+```

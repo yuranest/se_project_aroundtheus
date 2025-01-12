@@ -1,22 +1,21 @@
 class Card {
   constructor(data, cardSelector, handleImageClick) {
     this._name = data.name || "No Title"; // Fallback for missing title
-    this._link = data.link || ""; // Ensure link is not undefined
-    console.log("Card Data:", this._name, this._link); // Debugging
-    this._cardSelector = cardSelector;
-    this._handleImageClick = handleImageClick;
+    this._link = data.link || ""; // Fallback for missing link
+    this._cardSelector = cardSelector; // Card template selector
+    this._handleImageClick = handleImageClick; // Click handler for the card image
   }
 
   _getTemplate() {
-    const cardElement = document
+    // Fetch and clone the card template
+    return document
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-
-    return cardElement;
   }
 
   _setEventListeners() {
+    // Set up event listeners for card interactions
     this._likeButton = this._element.querySelector(".card__like-button");
     this._deleteButton = this._element.querySelector(".card__delete-button");
     this._cardImage = this._element.querySelector(".card__image");
@@ -36,11 +35,12 @@ class Card {
   }
 
   generateCard() {
+    // Create the card and set its content
     this._element = this._getTemplate();
     this._element.querySelector(".card__title").textContent = this._name;
     this._cardImage = this._element.querySelector(".card__image");
-    this._cardImage.src = this._link || ""; // Ensure link is valid
-    this._cardImage.alt = this._name || "Card image"; // Add fallback for alt
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
 
     this._setEventListeners();
 

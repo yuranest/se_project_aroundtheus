@@ -4,8 +4,9 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import "../styles/index.css";
+import "../styles/index.css"; // Import main CSS
 
+// Array of initial cards to render on page load
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -33,6 +34,7 @@ const initialCards = [
   },
 ];
 
+// Form validation settings
 const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -42,7 +44,7 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-// Validation
+// Enable form validation
 const formValidators = {};
 const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
@@ -55,7 +57,7 @@ const enableValidation = (config) => {
 };
 enableValidation(settings);
 
-// Section and Card
+// Initialize Section for card rendering
 const handleImageClick = (data) => imagePopup.open(data);
 const cardSection = new Section(
   {
@@ -69,27 +71,30 @@ const cardSection = new Section(
 );
 cardSection.renderItems();
 
-// Popups
+// Initialize PopupWithImage
 const imagePopup = new PopupWithImage(".modal_type_image");
 imagePopup.setEventListeners();
 
+// Initialize UserInfo for profile data handling
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
 });
 
+// Initialize and handle profile editing popup
 const profilePopup = new PopupWithForm(".modal_type_edit-profile", (data) => {
   console.log("Profile Form Submission Data:", data); // Debugging
   userInfo.setUserInfo({
     name: data.name,
-    job: data.description, // Ensure description is passed as job
+    job: data.description, // Map 'description' to 'job'
   });
 });
 profilePopup.setEventListeners();
 
+// Initialize and handle adding new cards
 const addCardPopup = new PopupWithForm(".modal_type_add-card", (data) => {
   if (!data.placeName || !data.imageLink) {
-    console.error("Invalid card data:", data); // Debugging
+    console.error("Invalid card data:", data); // Log invalid data
     return;
   }
   const newCard = new Card(
@@ -101,7 +106,7 @@ const addCardPopup = new PopupWithForm(".modal_type_add-card", (data) => {
 });
 addCardPopup.setEventListeners();
 
-// Event Listeners
+// Event listeners for opening modals
 document
   .querySelector(".profile__edit-button")
   .addEventListener("click", () => {

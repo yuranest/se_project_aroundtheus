@@ -6,65 +6,66 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   devtool: "inline-source-map",
   entry: {
-    main: "./src/pages/index.js", // Entry point
+    main: "./src/pages/index.js", // Entry point for JavaScript
   },
   output: {
     path: path.resolve(__dirname, "dist"), // Output directory
-    filename: "main.js", // Output filename for JS
-    publicPath: "/", // Ensure correct public path for assets
+    filename: "main.js", // Output JS file
+    publicPath: "/", // Public path for assets
   },
-  target: ["web", "es5"], // Target web and ES5 compatibility
+  target: ["web", "es5"], // Target compatibility
   stats: "errors-only",
-  mode: "development", // Development mode
+  mode: "development",
   devServer: {
     static: path.resolve(__dirname, "dist"), // Serve static files from dist
     compress: true,
     port: 8080,
-    open: true, // Open in browser automatically
-    liveReload: true, // Enable live reloading
-    hot: false, // Disable hot module replacement
+    open: true, // Open the project in a browser automatically
+    liveReload: true, // Enable live reload on changes
+    hot: false, // Disable HMR
   },
   module: {
     rules: [
       {
-        test: /\.js$/, // Process JavaScript files
+        test: /\.js$/, // JavaScript processing
         loader: "babel-loader",
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/, // Process CSS files
+        test: /\.css$/, // CSS processing
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: { importLoaders: 1 },
           },
-          "postcss-loader", // Process CSS with PostCSS
+          "postcss-loader",
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i, // Handle image files
+        test: /\.(png|svg|jpg|jpeg|gif)$/i, // Image handling
         type: "asset/resource",
         generator: {
-          filename: "images/[hash][ext][query]", // Output images to 'images' folder
+          filename: "images/[hash][ext][query]", // Output folder for images
         },
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf)$/i, // Handle font files
+        test: /\.(woff(2)?|eot|ttf|otf)$/i, // Font handling
         type: "asset/resource",
         generator: {
-          filename: "fonts/[hash][ext][query]", // Output fonts to 'fonts' folder
+          filename: "fonts/[hash][ext][query]", // Output folder for fonts
         },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html", // Use HTML template
+      template: "./src/index.html", // Path to HTML template
+      favicon: "./src/images/favicon.ico", // Favicon path
     }),
-    new CleanWebpackPlugin(), // Clean 'dist' folder before each build
+    new CleanWebpackPlugin(), // Clean output folder before building
     new MiniCssExtractPlugin({
-      filename: "styles/[name].css", // Output CSS to 'styles' folder
+      filename: "styles/[name].css", // Output folder for CSS
     }),
   ],
 };
