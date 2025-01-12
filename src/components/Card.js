@@ -1,7 +1,8 @@
 class Card {
   constructor(data, cardSelector, handleImageClick) {
-    this._name = data.name;
-    this._link = data.link;
+    this._name = data.name || "No Title"; // Fallback for missing title
+    this._link = data.link || ""; // Ensure link is not undefined
+    console.log("Card Data:", this._name, this._link); // Debugging
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
   }
@@ -38,8 +39,8 @@ class Card {
     this._element = this._getTemplate();
     this._element.querySelector(".card__title").textContent = this._name;
     this._cardImage = this._element.querySelector(".card__image");
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
+    this._cardImage.src = this._link || ""; // Ensure link is valid
+    this._cardImage.alt = this._name || "Card image"; // Add fallback for alt
 
     this._setEventListeners();
 

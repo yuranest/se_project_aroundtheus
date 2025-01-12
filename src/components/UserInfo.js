@@ -12,8 +12,17 @@ class UserInfo {
   }
 
   setUserInfo({ name, job }) {
-    this._nameElement.textContent = name;
-    this._jobElement.textContent = job;
+    if (name) {
+      this._nameElement.textContent = name;
+    } else {
+      console.error("Name is missing in setUserInfo.");
+    }
+
+    if (job) {
+      this._jobElement.textContent = job;
+    } else {
+      console.error("Job is missing in setUserInfo.");
+    }
   }
 }
 

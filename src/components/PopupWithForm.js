@@ -11,8 +11,9 @@ class PopupWithForm extends Popup {
   _getInputValues() {
     const inputValues = {};
     this._inputList.forEach((input) => {
-      inputValues[input.name] = input.value;
+      inputValues[input.name] = input.value.trim(); // Ensure trimmed values
     });
+    console.log("Input Values:", inputValues); // Debugging
     return inputValues;
   }
 

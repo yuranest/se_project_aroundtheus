@@ -38,7 +38,7 @@ const settings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__save-btn",
   inactiveButtonClass: "modal__save-btn_disabled",
-  inputErrorClass: "modal__input_type_error",
+  inputErrorClass: ".modal__input_type_error",
   errorClass: "modal__error_visible",
 };
 
@@ -79,12 +79,24 @@ const userInfo = new UserInfo({
 });
 
 const profilePopup = new PopupWithForm(".modal_type_edit-profile", (data) => {
-  userInfo.setUserInfo(data);
+  console.log("Profile Form Submission Data:", data); // Debugging
+  userInfo.setUserInfo({
+    name: data.name,
+    job: data.description, // Ensure description is passed as job
+  });
 });
 profilePopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm(".modal_type_add-card", (data) => {
-  const newCard = new Card(data, ".card-template", handleImageClick);
+  if (!data.placeName || !data.imageLink) {
+    console.error("Invalid card data:", data); // Debugging
+    return;
+  }
+  const newCard = new Card(
+    { name: data.placeName, link: data.imageLink },
+    ".card-template",
+    handleImageClick
+  );
   cardSection.addItem(newCard.generateCard());
 });
 addCardPopup.setEventListeners();

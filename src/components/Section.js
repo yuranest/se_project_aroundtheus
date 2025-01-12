@@ -6,7 +6,13 @@ class Section {
   }
 
   renderItems() {
-    this._items.forEach((item) => this._renderer(item));
+    this._items.forEach((item) => {
+      if (item.name && item.link) {
+        this._renderer(item);
+      } else {
+        console.error("Invalid item:", item); // Debugging
+      }
+    });
   }
 
   addItem(element) {
