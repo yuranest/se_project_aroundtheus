@@ -5,7 +5,7 @@ class PopupWithForm extends Popup {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit; // Callback for form submission
     this._form = this._popup.querySelector(".modal__form");
-    this._inputList = Array.from(this._form.querySelectorAll(".modal__input"));
+    this._inputList = Array.from(this._form.querySelectorAll(".modal__input")); // Collect input fields only once
   }
 
   _getInputValues() {
@@ -22,15 +22,15 @@ class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
-      this.close();
+      this._handleFormSubmit(this._getInputValues()); // Pass collected input values to the callback
+      this._form.reset(); // Clear inputs only after successful submission
+      this.close(); // Close the popup after submission
     });
   }
 
   close() {
-    // Reset the form and close the popup
+    // Close the popup without clearing inputs
     super.close();
-    this._form.reset();
   }
 }
 
