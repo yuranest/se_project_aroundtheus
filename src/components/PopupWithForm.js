@@ -25,9 +25,6 @@ class PopupWithForm extends Popup {
       evt.preventDefault(); // Prevent default form submission
       this._handleFormSubmit(this._getInputValues()); // Call the submit callback with form values
       this._form.reset(); // Clear the form inputs after submission
-      if (this._formValidator) {
-        this._formValidator.resetValidation(); // Reset validation state
-      }
       this.close(); // Close the popup
     });
   }
@@ -38,11 +35,6 @@ class PopupWithForm extends Popup {
       this._formValidator.resetValidation(); // Reset validation and disable the submit button
     }
     super.open();
-  }
-
-  // Close the popup
-  close() {
-    super.close();
   }
 }
 
