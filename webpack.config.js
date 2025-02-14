@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"), // Output directory for bundled files
     filename: "scripts/[name].[contenthash].js", // JS file naming pattern with content hash
-    publicPath: "./", // ✅ Ensures correct paths for GitHub Pages
+    publicPath: "/se_project_aroundtheus/", // ✅ Corrected for GitHub Pages
   },
 
   // Define the mode: development or production
@@ -37,7 +37,14 @@ module.exports = {
         test: /\.(png|jpg|jpeg|svg|gif)$/i, // Process image files
         type: "asset/resource", // Use asset/resource module type
         generator: {
-          filename: "./images/[name].[hash][ext]", // ✅ Ensures correct paths for GitHub Pages
+          filename: "assets/images/[name].[hash][ext]", // ✅ Corrected path for images
+        },
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf)$/i, // Process font files
+        type: "asset/resource",
+        generator: {
+          filename: "assets/fonts/[name].[hash][ext]", // ✅ Ensures correct path for fonts
         },
       },
       {
