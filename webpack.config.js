@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"), // Directory for bundled files
     filename: "scripts/[name].[contenthash].js", // JS file naming pattern with content hash for cache busting
-    publicPath: "/", // Path for assets in GitHub Pages
+    publicPath: ".", // ✅ Changed from "/" to "." for GitHub Pages compatibility
   },
 
   // Define the mode: development or production
@@ -60,7 +60,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html", // Path to the HTML template
-      favicon: "./src/images/favicon.ico", // Path to the favicon file
+      favicon: "./src/images/favicon.ico", // ✅ Ensuring this remains relative
     }),
     new CleanWebpackPlugin(), // Clean the dist folder before each build
   ],
