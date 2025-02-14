@@ -1,8 +1,8 @@
 // Webpack configuration for Around The U.S. Project
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // Plugin to extract CSS into separate files
-const HtmlWebpackPlugin = require("html-webpack-plugin"); // Plugin to manage HTML file creation
-const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // Plugin to clean the dist folder before each build
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // Extracts CSS into separate files
+const HtmlWebpackPlugin = require("html-webpack-plugin"); // Manages HTML file creation
+const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // Cleans the dist folder before each build
 
 module.exports = {
   // Entry point for the application
@@ -10,9 +10,9 @@ module.exports = {
 
   // Output configuration
   output: {
-    path: path.resolve(__dirname, "dist"), // Directory for bundled files
-    filename: "scripts/[name].[contenthash].js", // JS file naming pattern with content hash for cache busting
-    publicPath: ".", // Path for assets in GitHub Pages
+    path: path.resolve(__dirname, "dist"), // Output directory for bundled files
+    filename: "scripts/[name].[contenthash].js", // JS file naming pattern with content hash
+    publicPath: "./", // ✅ Ensures correct paths for GitHub Pages
   },
 
   // Define the mode: development or production
@@ -37,7 +37,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|svg|gif)$/i, // Process image files
         type: "asset/resource", // Use asset/resource module type
         generator: {
-          filename: "images/[name].[hash][ext]", // Image file naming pattern with hash
+          filename: "./images/[name].[hash][ext]", // ✅ Ensures correct paths for GitHub Pages
         },
       },
       {
@@ -56,12 +56,12 @@ module.exports = {
   // Plugins to extend Webpack functionality
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "styles/[name].[contenthash].css", // CSS file naming pattern with content hash
+      filename: "styles/[name].[contenthash].css", // ✅ Ensures correct paths for CSS files
     }),
     new HtmlWebpackPlugin({
-      template: "./src/index.html", // Path to the HTML template
-      favicon: "./src/images/favicon.ico", // Path to the favicon file
+      template: "./src/index.html", // ✅ Relative path to the HTML template
+      favicon: "./src/images/favicon.ico", // ✅ Relative path to the favicon file
     }),
-    new CleanWebpackPlugin(), // Clean the dist folder before each build
+    new CleanWebpackPlugin(), // Cleans the dist folder before each build
   ],
 };
