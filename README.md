@@ -98,6 +98,10 @@ _Around The U.S._ is a dynamic, responsive web application built with **HTML**, 
 
 ---
 
+### **### **9. Sprint 9: Asynchronous JavaScript and APIs.
+
+Code Review on GitHub...
+
 ### **Room for Future Sprints**
 
 - **Sprint 9**: Asynchronous JavaScript and APIs.
