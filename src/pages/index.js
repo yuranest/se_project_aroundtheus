@@ -18,12 +18,17 @@ const api = new Api({
 });
 
 // Fetch and display user info
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+});
+
 api
   .getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo({
-      name: userData.name,
-      job: userData.about,
+      name: userData.name || "No name provided",
+      job: userData.about || "No job specified",
     });
   })
   .catch((err) => console.error("Error fetching user data:", err));
@@ -35,7 +40,7 @@ const enableValidation = (config) => {
   forms.forEach((form) => {
     const validator = new FormValidator(config, form);
     const formName = form.getAttribute("name");
-    formValidators[formName] = validator; // Link validator to the form by its name
+    formValidators[formName] = validator;
     validator.enableValidation();
   });
 };
@@ -43,7 +48,13 @@ enableValidation(settings);
 
 // Create a card
 function createCard(item) {
-  const card = new Card(item, ".card-template", handleImageClick);
+  const card = new Card(
+    item,
+    ".card-template",
+    handleImageClick,
+    openDeletePopup,
+    api // ✅ Pass API instance to Card
+  );
   return card.generateCard();
 }
 
@@ -66,20 +77,18 @@ const imagePopup = new PopupWithImage(".modal_type_image");
 imagePopup.setEventListeners();
 
 // Profile popup
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__description",
-});
-
 const profilePopup = new PopupWithForm(
   ".modal_type_edit-profile",
   (data) => {
-    api
+    return api
       .updateUserInfo({
         name: data.name,
-        about: data.description, // ✅ Ensure consistency with API
+        about: data.description,
       })
-      .then(() => userInfo.setUserInfo(data))
+      .then(() => {
+        userInfo.setUserInfo(data);
+        document.forms["profile-form"].reset();
+      })
       .catch((err) => console.error("Error updating user info:", err));
   },
   formValidators["profile-form"]
@@ -90,12 +99,13 @@ profilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm(
   ".modal_type_add-card",
   (data) => {
-    api
+    return api
       .addCard({ name: data.placeName, link: data.imageLink })
       .then((newCard) => {
         const cardElement = createCard(newCard);
-        cardSection.addItem(cardElement); // Add the new card to the DOM
-        formValidators["add-card"].disableButton(); // Disable the button after submission
+        cardSection.addItem(cardElement);
+        document.forms["add-card"].reset();
+        formValidators["add-card"].disableButton();
       })
       .catch((err) => console.error("Error adding card:", err));
   },
@@ -103,7 +113,50 @@ const addCardPopup = new PopupWithForm(
 );
 addCardPopup.setEventListeners();
 
-// Event listeners for popups
+// Avatar update popup
+const avatarPopup = new PopupWithForm(
+  ".modal_type_avatar",
+  (data) => {
+    return api
+      .updateUserAvatar({ avatar: data.avatar })
+      .then((res) => {
+        document.querySelector(".profile__avatar").src = res.avatar;
+        document.forms["avatar-form"].reset();
+      })
+      .catch((err) => console.error("Error updating avatar:", err));
+  },
+  formValidators["avatar-form"]
+);
+avatarPopup.setEventListeners();
+
+// Delete confirmation popup
+let cardToDelete = null;
+let cardIdToDelete = null;
+
+const deletePopup = new PopupWithForm(".modal_type_delete", () => {
+  if (cardToDelete && cardIdToDelete) {
+    return api
+      .deleteCard(cardIdToDelete)
+      .then(() => {
+        cardToDelete.deleteCard();
+        cardToDelete = null;
+        cardIdToDelete = null;
+        deletePopup.close();
+      })
+      .catch((err) => console.error("Error deleting card:", err));
+  }
+  return Promise.reject("No card selected for deletion");
+});
+deletePopup.setEventListeners();
+
+// Function to open delete popup
+function openDeletePopup(cardId, cardInstance) {
+  cardIdToDelete = cardId;
+  cardToDelete = cardInstance;
+  deletePopup.open();
+}
+
+// Event listeners for profile popups
 document
   .querySelector(".profile__edit-button")
   .addEventListener("click", () => {
@@ -114,5 +167,9 @@ document
   });
 
 document.querySelector(".profile__add-button").addEventListener("click", () => {
-  addCardPopup.open(); // Open Add Card popup
+  addCardPopup.open();
+});
+
+document.querySelector(".avatar__edit-button").addEventListener("click", () => {
+  avatarPopup.open();
 });
