@@ -53,10 +53,10 @@ export default class Api {
 
   // ✅ Fixed Like & Unlike Endpoints
   async likeCard(cardId) {
-    return this._request(`/cards/${cardId}/likes/`, "PUT");
+    return this._request(`/cards/${cardId}/likes`, "PUT");
   }
 
   async unlikeCard(cardId) {
-    return this._request(`/cards/${cardId}/likes/`, "DELETE");
+    return this._request(`/cards/${cardId}/likes`, "DELETE");
   }
 }
