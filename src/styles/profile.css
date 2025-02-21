@@ -5,10 +5,40 @@
   justify-content: space-between;
 }
 
+.profile__avatar-container {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+}
+
 .profile__avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar__edit-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.6) url("../images/avatar_edit.svg") no-repeat
+    center;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile__avatar-container:hover .avatar__edit-button,
+.avatar__edit-button:hover {
+  opacity: 1;
 }
 
 .profile__info {
