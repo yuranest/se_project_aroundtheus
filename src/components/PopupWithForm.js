@@ -15,6 +15,7 @@ class PopupWithForm extends Popup {
     this._submitButton.textContent = isLoading
       ? "Saving..."
       : this._defaultButtonText;
+    this._submitButton.disabled = isLoading; // ✅ Prevent multiple submissions
   }
 
   _getInputValues() {
@@ -31,18 +32,23 @@ class PopupWithForm extends Popup {
       evt.preventDefault();
       this._showLoading(true);
 
-      const result = this._handleFormSubmit(this._getInputValues());
+      try {
+        const result = this._handleFormSubmit(this._getInputValues());
 
-      if (result instanceof Promise) {
-        result
-          .then(() => {
-            this.close();
-            this._form.reset();
-          })
-          .catch((err) => console.error("Form submission error:", err))
-          .finally(() => this._showLoading(false));
-      } else {
-        console.error("Error: _handleFormSubmit did not return a Promise");
+        if (result instanceof Promise) {
+          result
+            .then(() => {
+              this.close();
+              this._form.reset();
+              if (this._formValidator) this._formValidator.resetValidation(); // ✅ Reset validation on close
+            })
+            .catch((err) => console.error("Form submission error:", err))
+            .finally(() => this._showLoading(false));
+        } else {
+          throw new Error("_handleFormSubmit did not return a Promise");
+        }
+      } catch (err) {
+        console.error("Form submission error:", err);
         this._showLoading(false);
       }
     });

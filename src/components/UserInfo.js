@@ -1,29 +1,34 @@
 class UserInfo {
-  constructor({ nameSelector, jobSelector }) {
+  constructor({ nameSelector, jobSelector, avatarSelector }) {
     this._nameElement = document.querySelector(nameSelector);
     this._jobElement = document.querySelector(jobSelector);
+    this._avatarElement = document.querySelector(avatarSelector); // ✅ Added avatar support
   }
 
   getUserInfo() {
-    // Return current user info from the page
     return {
-      name: this._nameElement.textContent,
-      job: this._jobElement.textContent,
+      name: this._nameElement.textContent || "Unknown Name",
+      job: this._jobElement.textContent || "No job specified",
+      avatar: this._avatarElement.src || "", // ✅ Get avatar URL
     };
   }
 
-  setUserInfo({ name, job }) {
-    // Update the user info on the page
-    if (name) {
+  setUserInfo({ name, job, avatar }) {
+    if (typeof name === "string" && name.trim() !== "") {
       this._nameElement.textContent = name;
-    } else {
-      console.error("Name is missing in setUserInfo.");
     }
 
-    if (job) {
+    if (typeof job === "string" && job.trim() !== "") {
       this._jobElement.textContent = job;
-    } else {
-      console.error("Job is missing in setUserInfo.");
+    } else if (
+      !this._jobElement.textContent ||
+      this._jobElement.textContent === "No job specified"
+    ) {
+      this._jobElement.textContent = "No job specified";
+    }
+
+    if (typeof avatar === "string" && avatar.trim() !== "") {
+      this._avatarElement.src = avatar; // ✅ Ensure avatar updates when provided
     }
   }
 }

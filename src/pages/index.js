@@ -21,14 +21,16 @@ const api = new Api({
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
+  avatarSelector: ".profile__avatar", // ✅ Added avatarSelector
 });
 
 api
   .getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo({
-      name: userData.name || "No name provided",
-      job: userData.about || "No job specified",
+      name: userData.name || "Unknown Name", // ✅ Ensure default value
+      job: userData.about || "No job specified", // ✅ Ensure default value
+      avatar: userData.avatar || "default-avatar.jpg", // ✅ Ensure avatar loads from API
     });
   })
   .catch((err) => console.error("Error fetching user data:", err));
@@ -48,13 +50,7 @@ enableValidation(settings);
 
 // Create a card
 function createCard(item) {
-  const card = new Card(
-    item,
-    ".card-template",
-    handleImageClick,
-    openDeletePopup,
-    api // ✅ Pass API instance to Card
-  );
+  const card = new Card(item, ".card-template", handleImageClick);
   return card.generateCard();
 }
 
@@ -80,7 +76,7 @@ imagePopup.setEventListeners();
 const profilePopup = new PopupWithForm(
   ".modal_type_edit-profile",
   (data) => {
-    return api
+    return api // ✅ Ensure API request is returned
       .updateUserInfo({
         name: data.name,
         about: data.description,
@@ -99,7 +95,7 @@ profilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm(
   ".modal_type_add-card",
   (data) => {
-    return api
+    return api // ✅ Ensure API request is returned
       .addCard({ name: data.placeName, link: data.imageLink })
       .then((newCard) => {
         const cardElement = createCard(newCard);
@@ -113,7 +109,7 @@ const addCardPopup = new PopupWithForm(
 );
 addCardPopup.setEventListeners();
 
-// Avatar update popup
+// ✅ Avatar update popup (NEW)
 const avatarPopup = new PopupWithForm(
   ".modal_type_avatar",
   (data) => {
@@ -129,32 +125,10 @@ const avatarPopup = new PopupWithForm(
 );
 avatarPopup.setEventListeners();
 
-// Delete confirmation popup
-let cardToDelete = null;
-let cardIdToDelete = null;
-
-const deletePopup = new PopupWithForm(".modal_type_delete", () => {
-  if (cardToDelete && cardIdToDelete) {
-    return api
-      .deleteCard(cardIdToDelete)
-      .then(() => {
-        cardToDelete.deleteCard();
-        cardToDelete = null;
-        cardIdToDelete = null;
-        deletePopup.close();
-      })
-      .catch((err) => console.error("Error deleting card:", err));
-  }
-  return Promise.reject("No card selected for deletion");
+// ✅ Open avatar popup on button click
+document.querySelector(".avatar__edit-button").addEventListener("click", () => {
+  avatarPopup.open();
 });
-deletePopup.setEventListeners();
-
-// Function to open delete popup
-function openDeletePopup(cardId, cardInstance) {
-  cardIdToDelete = cardId;
-  cardToDelete = cardInstance;
-  deletePopup.open();
-}
 
 // Event listeners for profile popups
 document
@@ -168,8 +142,4 @@ document
 
 document.querySelector(".profile__add-button").addEventListener("click", () => {
   addCardPopup.open();
-});
-
-document.querySelector(".avatar__edit-button").addEventListener("click", () => {
-  avatarPopup.open();
 });
