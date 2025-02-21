@@ -8,7 +8,7 @@ import { initialCards, settings } from "../utils/constants.js";
 import "../styles/index.css";
 import Api from "../components/Api.js";
 
-// Initialize API instance
+// ✅ Initialize API instance
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -17,25 +17,26 @@ const api = new Api({
   },
 });
 
-// Fetch and display user info
+// ✅ Initialize UserInfo with avatar support
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
-  avatarSelector: ".profile__avatar", // ✅ Added avatarSelector
+  avatarSelector: ".profile__avatar",
 });
 
+// ✅ Fetch user profile data and set it in the UI
 api
   .getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo({
-      name: userData.name || "Unknown Name", // ✅ Ensure default value
-      job: userData.about || "No job specified", // ✅ Ensure default value
-      avatar: userData.avatar || "default-avatar.jpg", // ✅ Ensure avatar loads from API
+      name: userData.name || "Unknown Name",
+      job: userData.about || "No job specified",
+      avatar: userData.avatar || "default-avatar.jpg",
     });
   })
   .catch((err) => console.error("Error fetching user data:", err));
 
-// Enable validation
+// ✅ Enable form validation
 const formValidators = {};
 const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
@@ -48,13 +49,19 @@ const enableValidation = (config) => {
 };
 enableValidation(settings);
 
-// Create a card
+// ✅ Create a card
 function createCard(item) {
-  const card = new Card(item, ".card-template", handleImageClick);
+  const card = new Card(
+    item,
+    ".card-template",
+    handleImageClick,
+    openDeletePopup,
+    api
+  );
   return card.generateCard();
 }
 
-// Initialize card section
+// ✅ Initialize card section
 const handleImageClick = (data) => imagePopup.open(data);
 const cardSection = new Section(
   {
@@ -68,15 +75,15 @@ const cardSection = new Section(
 );
 cardSection.renderItems();
 
-// Popup for image preview
+// ✅ Popup for image preview
 const imagePopup = new PopupWithImage(".modal_type_image");
 imagePopup.setEventListeners();
 
-// Profile popup
+// ✅ Profile popup
 const profilePopup = new PopupWithForm(
   ".modal_type_edit-profile",
   (data) => {
-    return api // ✅ Ensure API request is returned
+    return api
       .updateUserInfo({
         name: data.name,
         about: data.description,
@@ -91,11 +98,11 @@ const profilePopup = new PopupWithForm(
 );
 profilePopup.setEventListeners();
 
-// Add card popup
+// ✅ Add card popup
 const addCardPopup = new PopupWithForm(
   ".modal_type_add-card",
   (data) => {
-    return api // ✅ Ensure API request is returned
+    return api
       .addCard({ name: data.placeName, link: data.imageLink })
       .then((newCard) => {
         const cardElement = createCard(newCard);
@@ -109,7 +116,7 @@ const addCardPopup = new PopupWithForm(
 );
 addCardPopup.setEventListeners();
 
-// ✅ Avatar update popup (NEW)
+// ✅ Avatar update popup
 const avatarPopup = new PopupWithForm(
   ".modal_type_avatar",
   (data) => {
@@ -130,7 +137,38 @@ document.querySelector(".avatar__edit-button").addEventListener("click", () => {
   avatarPopup.open();
 });
 
-// Event listeners for profile popups
+// ✅ Delete confirmation popup
+let cardToDelete = null;
+let cardIdToDelete = null;
+
+const deletePopup = new PopupWithForm(".modal_type_delete", () => {
+  if (cardToDelete && cardIdToDelete) {
+    return api
+      .deleteCard(cardIdToDelete)
+      .then(() => {
+        cardToDelete.deleteCard();
+        cardToDelete = null;
+        cardIdToDelete = null;
+        deletePopup.close();
+      })
+      .catch((err) => console.error("Error deleting card:", err));
+  }
+  return Promise.reject("No card selected for deletion");
+});
+deletePopup.setEventListeners();
+
+// ✅ Function to open delete popup
+function openDeletePopup(cardId, cardInstance) {
+  if (!cardId) {
+    console.error("Error: Trying to delete a card without an ID");
+    return;
+  }
+  cardIdToDelete = cardId;
+  cardToDelete = cardInstance;
+  deletePopup.open();
+}
+
+// ✅ Event listeners for profile popups
 document
   .querySelector(".profile__edit-button")
   .addEventListener("click", () => {

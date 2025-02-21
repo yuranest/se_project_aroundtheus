@@ -15,7 +15,7 @@ class PopupWithForm extends Popup {
     this._submitButton.textContent = isLoading
       ? "Saving..."
       : this._defaultButtonText;
-    this._submitButton.disabled = isLoading; // ✅ Prevent multiple submissions
+    this._submitButton.disabled = isLoading;
   }
 
   _getInputValues() {
@@ -40,7 +40,7 @@ class PopupWithForm extends Popup {
             .then(() => {
               this.close();
               this._form.reset();
-              if (this._formValidator) this._formValidator.resetValidation(); // ✅ Reset validation on close
+              if (this._formValidator) this._formValidator.resetValidation();
             })
             .catch((err) => console.error("Form submission error:", err))
             .finally(() => this._showLoading(false));

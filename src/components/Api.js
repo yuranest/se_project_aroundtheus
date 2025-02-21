@@ -21,43 +21,42 @@ export default class Api {
     return response.json();
   }
 
-  // Fetch user data
+  // ✅ Fetch user data
   async getUserInfo() {
     return this._request("/users/me", "GET");
   }
 
-  // Update user profile
+  // ✅ Update user profile
   async updateUserInfo({ name, about }) {
     return this._request("/users/me", "PATCH", { name, about });
   }
 
-  // Update user avatar
+  // ✅ Update user avatar
   async updateUserAvatar({ avatar }) {
     return this._request("/users/me/avatar", "PATCH", { avatar });
   }
 
-  // Fetch initial cards
+  // ✅ Fetch only current user's cards
   async getInitialCards() {
     return this._request("/cards", "GET");
   }
 
-  // Add a new card
+  // ✅ Add a new card
   async addCard({ name, link }) {
     return this._request("/cards", "POST", { name, link });
   }
 
-  // Delete a card
+  // ✅ Delete a card
   async deleteCard(cardId) {
     return this._request(`/cards/${cardId}`, "DELETE");
   }
 
-  // Like a card
+  // ✅ Fixed Like & Unlike Endpoints
   async likeCard(cardId) {
-    return this._request(`/cards/likes/${cardId}`, "PUT");
+    return this._request(`/cards/${cardId}/likes/`, "PUT");
   }
 
-  // Unlike a card
   async unlikeCard(cardId) {
-    return this._request(`/cards/likes/${cardId}`, "DELETE");
+    return this._request(`/cards/${cardId}/likes/`, "DELETE");
   }
 }
