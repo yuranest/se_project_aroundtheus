@@ -1,13 +1,20 @@
 class Section {
-  constructor({ items, renderer }, containerSelector) {
-    this._items = items; // Items to render
+  constructor({ renderer }, containerSelector) {
     this._renderer = renderer; // Function to render each item
     this._container = document.querySelector(containerSelector); // Container for items
   }
 
-  renderItems() {
-    // Render all items by calling the renderer function
-    this._items.forEach((item) => {
+  // ✅ Updated to prevent errors if items are not an array
+  renderItems(items) {
+    if (!Array.isArray(items)) {
+      console.error(
+        "Error: renderItems expected an array but received:",
+        items
+      );
+      return;
+    }
+
+    items.forEach((item) => {
       if (item.name && item.link) {
         this._renderer(item);
       } else {

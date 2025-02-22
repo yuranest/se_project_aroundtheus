@@ -4,7 +4,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { initialCards, settings } from "../utils/constants.js";
+import { settings } from "../utils/constants.js";
 import "../styles/index.css";
 import Api from "../components/Api.js";
 
@@ -12,7 +12,7 @@ import Api from "../components/Api.js";
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "a0ce3834-8274-40bb-a117-5fa7d2b8bbe7", // token
+    authorization: "a0ce3834-8274-40bb-a117-5fa7d2b8bbe7", // Token
     "Content-Type": "application/json",
   },
 });
@@ -49,31 +49,43 @@ const enableValidation = (config) => {
 };
 enableValidation(settings);
 
-// ✅ Create a card
+// ✅ Create a card function
 function createCard(item) {
-  const card = new Card(
+  if (!item._id) {
+    console.error("Skipping card without ID:", item);
+    return null;
+  }
+  return new Card(
     item,
     ".card-template",
     handleImageClick,
     openDeletePopup,
     api
-  );
-  return card.generateCard();
+  ).generateCard();
 }
 
-// ✅ Initialize card section
+// ✅ Initialize card section (Only API Cards)
 const handleImageClick = (data) => imagePopup.open(data);
 const cardSection = new Section(
   {
-    items: initialCards,
     renderer: (data) => {
       const cardElement = createCard(data);
-      cardSection.addItem(cardElement);
+      if (cardElement) cardSection.addItem(cardElement);
     },
   },
   ".cards__list"
 );
-cardSection.renderItems();
+
+// ✅ Fetch and display only the current user's cards
+api
+  .getInitialCards()
+  .then((cards) => {
+    if (!Array.isArray(cards)) {
+      throw new Error("Invalid API response: Expected an array of cards");
+    }
+    cardSection.renderItems(cards);
+  })
+  .catch((err) => console.error("Error loading initial cards:", err));
 
 // ✅ Popup for image preview
 const imagePopup = new PopupWithImage(".modal_type_image");
@@ -88,8 +100,11 @@ const profilePopup = new PopupWithForm(
         name: data.name,
         about: data.description,
       })
-      .then(() => {
-        userInfo.setUserInfo(data);
+      .then((updatedUser) => {
+        userInfo.setUserInfo({
+          name: updatedUser.name,
+          job: updatedUser.about,
+        });
         document.forms["profile-form"].reset();
       })
       .catch((err) => console.error("Error updating user info:", err));
@@ -98,15 +113,20 @@ const profilePopup = new PopupWithForm(
 );
 profilePopup.setEventListeners();
 
-// ✅ Add card popup
+// ✅ Add card popup (Only adds new card, does not re-fetch all)
 const addCardPopup = new PopupWithForm(
   ".modal_type_add-card",
   (data) => {
     return api
       .addCard({ name: data.placeName, link: data.imageLink })
       .then((newCard) => {
-        const cardElement = createCard(newCard);
-        cardSection.addItem(cardElement);
+        if (!newCard || !newCard._id) {
+          throw new Error("Error: New card does not have a valid ID.");
+        }
+
+        const cardElement = createCard(newCard); // ✅ Create only the new card
+        if (cardElement) cardSection.addItem(cardElement); // ✅ Add only the new card
+
         document.forms["add-card"].reset();
         formValidators["add-card"].disableButton();
       })

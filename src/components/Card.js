@@ -6,10 +6,12 @@ class Card {
     openDeletePopup,
     apiInstance
   ) {
-    this._id = data._id;
-    if (!this._id) {
-      console.error("Error: Card ID is missing", data);
+    if (!data._id) {
+      console.error("❌ Error: Card ID is missing", data);
+      return null; // ✅ Prevents card from being created if `_id` is missing
     }
+
+    this._id = data._id;
     this._name = data.name || "No Title";
     this._link = data.link || "";
     this._isLiked = data.isLiked || false;
@@ -38,7 +40,7 @@ class Card {
     this._deleteButton = this._element.querySelector(".card__delete-button");
     this._cardImage = this._element.querySelector(".card__image");
 
-    // ✅ Like/Unlike API call using `isLiked`
+    // Like/Unlike API call using `isLiked`
     this._likeButton.addEventListener("click", () => {
       if (!this._id) {
         console.error("Error: Cannot like/unlike a card without an ID.");
@@ -57,7 +59,7 @@ class Card {
         .catch((err) => console.error("Error updating like state:", err));
     });
 
-    // ✅ Ensure only deletable cards trigger deletion
+    // Ensure only deletable cards trigger deletion
     this._deleteButton.addEventListener("click", () => {
       if (!this._id) {
         console.error("Error: Trying to delete a card without an ID.");
@@ -66,7 +68,7 @@ class Card {
       this._openDeletePopup(this._id, this);
     });
 
-    // ✅ Open Image Preview
+    // Open Image Preview
     this._cardImage.addEventListener("click", () => {
       this._handleImageClick({ name: this._name, link: this._link });
     });
@@ -78,6 +80,11 @@ class Card {
   }
 
   generateCard() {
+    if (!this._id) {
+      console.error("❌ Skipping card generation: Missing ID", this);
+      return null; // ✅ Prevents card from being rendered
+    }
+
     this._element = this._getTemplate();
     this._element.querySelector(".card__title").textContent = this._name;
     this._cardImage = this._element.querySelector(".card__image");
