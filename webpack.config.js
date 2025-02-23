@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"), // Output directory for bundled files
     filename: "scripts/[name].[contenthash].js", // JS file naming pattern with content hash
-    publicPath: "/se_project_aroundtheus/", // ✅ Corrected for GitHub Pages "/se_project_aroundtheus/"
+    publicPath: "/se_project_aroundtheus/", // Corrected for GitHub Pages "/se_project_aroundtheus/"
   },
 
   // Define the mode: development or production
