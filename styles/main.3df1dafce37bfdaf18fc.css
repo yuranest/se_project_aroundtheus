@@ -355,7 +355,7 @@ template {
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/assets/fonts/Inter-Regular.76224c7fa303861462e7.woff2) format("woff2");
+  src: url(/se_project_aroundtheus/assets/fonts/Inter-Regular.76224c7fa303861462e7.woff2) format("woff2");
 }
 
 @font-face {
@@ -363,7 +363,7 @@ template {
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(/assets/fonts/Inter-Medium.9c1163dc5cc2a1c9b55b.woff2) format("woff2");
+  src: url(/se_project_aroundtheus/assets/fonts/Inter-Medium.9c1163dc5cc2a1c9b55b.woff2) format("woff2");
 }
 
 @font-face {
@@ -371,7 +371,7 @@ template {
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src: url(/assets/fonts/Inter-Black.9ed71fbc8206e8069042.woff2) format("woff2");
+  src: url(/se_project_aroundtheus/assets/fonts/Inter-Black.9ed71fbc8206e8069042.woff2) format("woff2");
 }
 
 .page {
@@ -460,7 +460,7 @@ template {
   transform: translate(-50%, -50%);
   width: 120px;
   height: 120px;
-  background: rgba(0, 0, 0, 0.6) url(/assets/images/avatar_edit.a086f758840ae814ecde.svg) no-repeat
+  background: rgba(0, 0, 0, 0.6) url(/se_project_aroundtheus/assets/images/avatar_edit.a086f758840ae814ecde.svg) no-repeat
     center;
   border: none;
   border-radius: 50%;
@@ -501,7 +501,7 @@ template {
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  background: transparent url(/assets/images/Edit_Button.6c7bf05444b9793fdf6e.svg) center no-repeat;
+  background: transparent url(/se_project_aroundtheus/assets/images/Edit_Button.6c7bf05444b9793fdf6e.svg) center no-repeat;
   cursor: pointer;
   border: 1px solid #fff;
   margin-right: 10px;
@@ -528,7 +528,7 @@ template {
 }
 
 .profile__add-button {
-  background: transparent url(/assets/images/Add_Button.bed8c136e13907f5eefb.svg) center no-repeat;
+  background: transparent url(/se_project_aroundtheus/assets/images/Add_Button.bed8c136e13907f5eefb.svg) center no-repeat;
   width: 150px;
   height: 50px;
   cursor: pointer;
@@ -673,7 +673,7 @@ template {
 }
 
 .card__like-button {
-  background: transparent url(/assets/images/like_disabled.cfd603a7a410dc4cf45a.svg) center no-repeat;
+  background: transparent url(/se_project_aroundtheus/assets/images/like_disabled.cfd603a7a410dc4cf45a.svg) center no-repeat;
   width: 21px;
   height: 18px;
   border: none;
@@ -686,12 +686,12 @@ template {
   opacity: 0.5;
 }
 .card__like-button_active {
-  background: transparent url(/assets/images/like_active.f8482d28867cec189b08.svg) center no-repeat; /* Ensure this is the path to your active heart icon */
+  background: transparent url(/se_project_aroundtheus/assets/images/like_active.f8482d28867cec189b08.svg) center no-repeat; /* Ensure this is the path to your active heart icon */
   background-size: cover;
 }
 
 .card__delete-button {
-  background: transparent url(/assets/images/Trash.a85cc5e25106301e909e.svg) center no-repeat;
+  background: transparent url(/se_project_aroundtheus/assets/images/Trash.a85cc5e25106301e909e.svg) center no-repeat;
   width: 18px;
   height: 19px;
   border: none;
@@ -742,7 +742,7 @@ template {
 }
 
 .modal__close-btn {
-  background-image: url(/assets/images/P_Close_Icon.dac22d3e7f8c8059add2.svg);
+  background-image: url(/se_project_aroundtheus/assets/images/P_Close_Icon.dac22d3e7f8c8059add2.svg);
   border: none;
   background-color: transparent;
   background-repeat: no-repeat;
@@ -842,7 +842,7 @@ template {
 }
 
 .modal__close-btn_type_image {
-  background-image: url(/assets/images/P_Close_Icon.dac22d3e7f8c8059add2.svg);
+  background-image: url(/se_project_aroundtheus/assets/images/P_Close_Icon.dac22d3e7f8c8059add2.svg);
   border: none;
   background-color: transparent;
   background-repeat: no-repeat;
@@ -882,7 +882,7 @@ template {
   }
 
   .modal__close-btn {
-    background-image: url(/assets/images/smal_Close_Icon.6b2ce9ca2dd5544f9e7d.svg);
+    background-image: url(/se_project_aroundtheus/assets/images/smal_Close_Icon.6b2ce9ca2dd5544f9e7d.svg);
     top: -35px;
     right: -13px;
   }
@@ -911,7 +911,7 @@ template {
   }
 
   .modal__close-btn_type_image {
-    background-image: url(/assets/images/img_smal_Close_Icon.8b59255a023eb8bd10c6.svg);
+    background-image: url(/se_project_aroundtheus/assets/images/img_smal_Close_Icon.8b59255a023eb8bd10c6.svg);
     top: -28px;
     right: -42px;
   }
