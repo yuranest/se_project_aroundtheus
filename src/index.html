@@ -27,12 +27,14 @@
 
       <main class="content">
         <section class="profile page__section">
-          <img
-            class="profile__avatar"
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Jacques Cousteau's avatar"
-          />
-
+          <div class="profile__avatar-container">
+            <img
+              class="profile__avatar"
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="Jacques Cousteau's avatar"
+            />
+            <button type="button" class="avatar__edit-button"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button type="button" class="profile__edit-button"></button>
@@ -59,6 +61,29 @@
           <p class="footer__text">&copy; 2024 Yuriy Nesterenko</p>
         </footer>
       </main>
+    </div>
+    <div class="modal modal_type_avatar">
+      <div class="modal__container">
+        <button
+          class="modal__close-btn modal__close-btn_type_avatar"
+          type="button"
+        ></button>
+        <h3 class="modal__title">Change Profile Picture</h3>
+        <form class="modal__form" name="avatar-form">
+          <div class="modal__input-container">
+            <input
+              type="url"
+              class="modal__input modal__input_type_avatar"
+              name="avatar"
+              id="avatar"
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__error" id="avatar-error"></span>
+          </div>
+          <button type="submit" class="modal__save-btn">Save</button>
+        </form>
+      </div>
     </div>
 
     <div class="modal modal_type_edit-profile">
@@ -89,7 +114,7 @@
               class="modal__input modal__input_type_description"
               name="description"
               id="description"
-              placeholder="Title"
+              placeholder="Job"
               minlength="2"
               maxlength="200"
               required
@@ -144,8 +169,21 @@
             class="modal__save-btn modal__save-btn_disabled"
             disabled
           >
-            Save
+            Create
           </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal modal_type_delete">
+      <div class="modal__container">
+        <button
+          class="modal__close-btn modal__close-btn_type_delete"
+          type="button"
+        ></button>
+        <h3 class="modal__title">Are you sure?</h3>
+        <form class="modal__form" name="delete-form">
+          <button type="submit" class="modal__save-btn">Yes</button>
         </form>
       </div>
     </div>
