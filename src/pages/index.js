@@ -17,14 +17,14 @@ const api = new Api({
   },
 });
 
-// ✅ Initialize UserInfo with avatar support
+// ✅ Initialize UserInfo
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__description",
   avatarSelector: ".profile__avatar",
 });
 
-// ✅ Fetch user profile data and set it in the UI
+// ✅ Fetch and display user profile
 api
   .getUserInfo()
   .then((userData) => {
@@ -49,7 +49,7 @@ const enableValidation = (config) => {
 };
 enableValidation(settings);
 
-// ✅ Create a card function
+// ✅ Function to create a card
 function createCard(item) {
   if (!item._id) {
     console.error("Skipping card without ID:", item);
@@ -76,7 +76,7 @@ const cardSection = new Section(
   ".cards__list"
 );
 
-// ✅ Fetch and display only the current user's cards
+// ✅ Fetch and display only API cards
 api
   .getInitialCards()
   .then((cards) => {
@@ -105,15 +105,13 @@ const profilePopup = new PopupWithForm(
           name: updatedUser.name,
           job: updatedUser.about,
         });
-        document.forms["profile-form"].reset();
-      })
-      .catch((err) => console.error("Error updating user info:", err));
+      });
   },
   formValidators["profile-form"]
 );
 profilePopup.setEventListeners();
 
-// ✅ Add card popup (Only adds new card, does not re-fetch all)
+// ✅ Add card popup (Fix: Only adds new card)
 const addCardPopup = new PopupWithForm(
   ".modal_type_add-card",
   (data) => {
@@ -123,30 +121,21 @@ const addCardPopup = new PopupWithForm(
         if (!newCard || !newCard._id) {
           throw new Error("Error: New card does not have a valid ID.");
         }
-
-        const cardElement = createCard(newCard); // ✅ Create only the new card
-        if (cardElement) cardSection.addItem(cardElement); // ✅ Add only the new card
-
-        document.forms["add-card"].reset();
-        formValidators["add-card"].disableButton();
-      })
-      .catch((err) => console.error("Error adding card:", err));
+        const cardElement = createCard(newCard);
+        if (cardElement) cardSection.addItem(cardElement);
+      });
   },
   formValidators["add-card"]
 );
 addCardPopup.setEventListeners();
 
-// ✅ Avatar update popup
+// ✅ Avatar update popup (Fix: Use userInfo for setting)
 const avatarPopup = new PopupWithForm(
   ".modal_type_avatar",
   (data) => {
-    return api
-      .updateUserAvatar({ avatar: data.avatar })
-      .then((res) => {
-        document.querySelector(".profile__avatar").src = res.avatar;
-        document.forms["avatar-form"].reset();
-      })
-      .catch((err) => console.error("Error updating avatar:", err));
+    return api.updateUserAvatar({ avatar: data.avatar }).then((res) => {
+      userInfo.setUserInfo({ avatar: res.avatar });
+    });
   },
   formValidators["avatar-form"]
 );
@@ -163,15 +152,12 @@ let cardIdToDelete = null;
 
 const deletePopup = new PopupWithForm(".modal_type_delete", () => {
   if (cardToDelete && cardIdToDelete) {
-    return api
-      .deleteCard(cardIdToDelete)
-      .then(() => {
-        cardToDelete.deleteCard();
-        cardToDelete = null;
-        cardIdToDelete = null;
-        deletePopup.close();
-      })
-      .catch((err) => console.error("Error deleting card:", err));
+    return api.deleteCard(cardIdToDelete).then(() => {
+      cardToDelete.deleteCard();
+      cardToDelete = null;
+      cardIdToDelete = null;
+      deletePopup.close();
+    });
   }
   return Promise.reject("No card selected for deletion");
 });
@@ -193,8 +179,7 @@ document
   .querySelector(".profile__edit-button")
   .addEventListener("click", () => {
     const userData = userInfo.getUserInfo();
-    document.forms["profile-form"].name.value = userData.name;
-    document.forms["profile-form"].description.value = userData.job;
+    profilePopup.setInputValues(userData);
     profilePopup.open();
   });
 

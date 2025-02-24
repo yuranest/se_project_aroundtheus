@@ -26,6 +26,18 @@ class PopupWithForm extends Popup {
     return inputValues;
   }
 
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      if (data.hasOwnProperty(input.name)) {
+        input.value = data[input.name];
+      }
+    });
+  }
+
+  getForm() {
+    return this._form;
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
@@ -42,7 +54,6 @@ class PopupWithForm extends Popup {
               this._form.reset();
               if (this._formValidator) this._formValidator.resetValidation();
             })
-            .catch((err) => console.error("Form submission error:", err))
             .finally(() => this._showLoading(false));
         } else {
           throw new Error("_handleFormSubmit did not return a Promise");
