@@ -179,6 +179,7 @@ document
   .querySelector(".profile__edit-button")
   .addEventListener("click", () => {
     const userData = userInfo.getUserInfo();
+    userData.description = userData.job;
     profilePopup.setInputValues(userData);
     profilePopup.open();
   });
